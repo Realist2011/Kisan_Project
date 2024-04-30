@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <a href="/">Home</a>
+    {{!-- <a href="/user/products/all">User Products</a> --}}
+    <a href="#">
+        <input type="text" name="searchbar" id="searchbar" placeholder="Enter product to search">
+    </a>
+    <a href="#">
+        <span class="login">Login</span>
+    </a>
+    <a href="/user/cart/show">
+        <span class="cart">Cart</span>
+        {{#if cartQuantity}}
+        <button class="cartQuantity">{{cartQuantity}}</button>
+        {{/if}}
+    </a>
+    <a href="/admin">
+        <span class="admin">Admin Page</span>
+    </a>
+    <a href="/admin/products/all">
+        <span class="">All Admin Products</span>
+    </a>
+</nav>

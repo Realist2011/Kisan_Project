@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Products List</h1>
+
+    <ul>
+        {{#each products as |p|}}
+        <li>
+            <img src="{{p.imageUrl}}" ><br>
+            Name:<span>{{p.name}}</span><br>
+            Description:<span>{{p.description}}</span><br>
+            Price: <span>{{p.price}}</span><br>
+            Seller:<span>Seller {{[p.seller]}}</span><br>
+            Date: <span>Date {{p.date}}</span><br>
+            {{#if p.reviews}}
+            <h5>Reviews</h5>
+            <ul>
+                {{#each p.reviews as |r|}}
+                <li>{{r.details}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            <a href="{{p._id}}">GET Info</a>
+
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
