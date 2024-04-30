@@ -6,6 +6,7 @@ const path = require("path");
 const hbs = require("hbs");
 const users = require("./models/kisan");
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userRouter = require("./routes/user");
 hbs.registerPartials(__dirname + "/views/partials");
@@ -13,7 +14,7 @@ const adminRouter = require("./routes/admin");
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.dirname("index.html")));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "hbs");
@@ -23,20 +24,16 @@ app.set("view engine", "hbs");
   res.send(`Hey mofo ${name}`);
 });*/
 
-/*app.post("/", async (req, res) => {
-  /*let name = req.body.name;
-
-  const { pswd, name, phone, Email, city, country,u,a } = req.body;
+app.post("/register", async (req, res) => {
+  const { pswd, name, phone, Email, city, country, u, a } = req.body;
   let ar = [name, pswd, phone, Email, city, country];
-  /*res.send(pswd);*/
-/*res.render("index", { data: ar });
-  if(u){
-    console.log("Registered as a user")
-
-  }
-  else if(a){
-    console.log('Registered as an admin')
-  }
+  // res.send(pswd);
+  res.render("index", { data: ar });
+  // if (u) {
+  //   console.log("Registered as a user");
+  // } else if (a) {
+  //   console.log("Registered as an admin");
+  // }
 
   await users.create({
     name,
@@ -51,7 +48,7 @@ app.set("view engine", "hbs");
 });
 /*app.get("/abt", (req, res) => {
   res.send("Hey mofo");
-});  */
+}); */
 
 app.post("/login", async (req, res) => {
   const { password, email } = req.body;

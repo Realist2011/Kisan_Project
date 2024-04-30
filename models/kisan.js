@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-
+const bycrpt = require("bcrypt");
 const UserSchema = new Schema({
   name: {
     type: String,
