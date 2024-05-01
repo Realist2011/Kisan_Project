@@ -14,6 +14,16 @@ app.use('/user',userRouter)
 app.use('/admin',adminRouter)
 
 
+app.use(async (req, res, next) => {
+  try {
+      let user = await users.findOne({ name: "Satvik Bajaj" });
+      req.user = user;
+      console.log(req.user)
+      next()
+  } catch (err) {
+      next(err);
+  }
+})
 
 
 app.use(express.static(path.join(__dirname, "public")));

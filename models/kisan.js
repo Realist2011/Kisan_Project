@@ -24,6 +24,14 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
+  cart: [{
+    id: {
+        type: Schema.Types.ObjectId,
+        ref:'products'
+        
+    },
+    quantity: Number,
+}]
 });
 
 module.exports = mongoose.model("users", UserSchema); //creating the model of users with schema
