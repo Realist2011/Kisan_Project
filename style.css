@@ -6,28 +6,27 @@ body {
 }
 .navbar {
   width: 100%;
-  height: 20vh;
+  height: 16vh;
   background-color: lightgreen;
   display: flex;
   align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   padding: 1vh;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.bordr {
+.borer {
   border: 2px solid black;
 }
 .kklogo {
-  height: 18vh;
-  width: 8vw;
+  height: 100px;
+  width: 100px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
   background-image: url("KISAN_KART.png");
 }
 .uppercontent {
+  height: 70%;
   box-sizing: border-box;
   padding: 1vh;
   display: flex;
@@ -38,7 +37,6 @@ body {
 /* .lowercontent {
   height: 30%;
   display: flex;
-
   align-items: center;
   box-sizing: border-box;
   background-color: rgba(91, 167, 91, 0.747);
@@ -49,10 +47,8 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .size1 {
-  width: 13vw;
   height: 100%;
 }
 .location {
@@ -61,14 +57,15 @@ body {
 }
 .loclogo,
 .fa-location-dot {
-  font-size: 2vw;
+  font-size: 35px;
   margin: 0.4vh;
 }
 .searchbar {
-  width: 50vw;
+  width: 54vw;
   height: 5vh;
   display: flex;
   align-items: center;
+  margin: 1.5%;
 }
 #searchInput {
   width: 90%;
@@ -90,47 +87,49 @@ body {
   border-top-right-radius: 100px;
   border: none;
 }
-.size2 {
-  height: 8vh;
-  width: 5vw;
-}
-.size3 {
+/* .size2 {
+  width: 3vw;
+} */
+/* .size3 {
   height: 8vh;
   width: 10vw;
-}
-.cart {
+} */
+/* .cart {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-}
-.cartlogo {
+} */
+/* .cartlogo {
   height: 4vh;
   width: 5vw;
-}
-.carttext {
-  font-size: 2vh;
+} */
+/* .carttext {
+  font-size: larger;
   font-weight: bold;
-}
+} */
 .fa-cart-shopping {
-  font-size: 1.8vw;
+  margin-right: 13px;
+  font-size: 30px;
+}
+.fa-user:before {
+  font-size: 28px;
+}
+.fa-shop::before {
+  font-size: 28px;
 }
 a {
   text-decoration: none;
   color: black;
 }
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  justify-content: space-evenly;
+  padding-top: 13.5px;
+  padding-right: 1.25%;
 }
-.loginupper {
+/* .loginupper {
   display: flex;
   text-align: right;
   height: fit-content;
   padding: 0.3vh;
-}
+} */
 .loginbottom {
   height: fit-content;
   z-index: 1;
@@ -142,18 +141,15 @@ a {
   top: 1.5vh;
   text-align: left;
   font-weight: bold;
-  font-size: 2vh;
+  font-size: smaller;
 }
 .joinasseller {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  justify-content: center;
-  padding: 0.4vh;
   align-items: center;
-  font-weight: bold;
-}
-.space {
+  padding-top: 11px;
+}.space {
   height: 200px;
 }
 .to-top {
