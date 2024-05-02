@@ -1,34 +1,46 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <style>
+    *{ margin: 0; box-sizing: border-box; } body,h1{ padding-left: 3vw; }
+    .b{border: 1px solid black; margin: 3vh; border-radius: 20px; height: 50vh;
+    width: 20vw; } .bb{ border: 1px solid black; display: flex; flex-wrap: wrap;
+    }
+  </style>
+  <body>
     <h1>Admin Products List</h1>
-
-    <ul>
-        {{#each products as |p|}}
-        <li>
-            <img src="{{p.imageUrl}}" ><br>
-            Name:<span>{{p.name}}</span><br>
-            Description:<span>{{p.description}}</span><br>
-            Price: <span>{{p.price}}</span><br>
-            Seller:<span>Seller {{[p.seller]}}</span><br>
-            Date: <span>Date {{p.date}}</span><br>
+    <ul class="bb">
+      {{#each products as |p|}}
+        <div class="b"><li>
+            <div class="photo"><img src="{{p.imageUrl}}" /></div><br />
+            <div class="name">Name:<span>{{p.name}}</span></div><br />
+            <div class="desc">Description:<span
+              >{{p.description}}</span></div><br />
+            <div class="price">Price:
+              <span>{{p.price}}</span>
+            </div><br />
+            <div class="seller">Seller:<span>Seller {{p.seller}}</span></div><br
+            />
+            <div class="date">Date:
+              <span>Date {{p.date}}</span></div><br />
             {{#if p.reviews}}
-            <h5>Reviews</h5>
-            <ul>
+              <h5>Reviews</h5>
+              <ul>
                 {{#each p.reviews as |r|}}
-                <li>{{r.details}}</li>
+                  <li>{{r.details}}</li>
                 {{/each}}
-            </ul>
+              </ul>
             {{/if}}
-            <a href="{{p._id}}">GET Info</a>
+            <a
+              href="{{p._id}}"
+              style="text-decoration: none; border:1px solid black; border-radius:5px; background-color: lightgrey;"
+            >GET Info</a>
 
-        </li>
-        {{/each}}
+          </li></div>
+      {{/each}}
     </ul>
-</body>
+  </body>
 </html>

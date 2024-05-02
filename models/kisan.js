@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-
+const bycrpt = require("bcrypt");
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -32,6 +32,16 @@ const UserSchema = new Schema({
     },
     quantity: Number,
 }]
+});
+UserSchema.pre("save", async function (next) {
+  try {
+    const salt = await bycrpt.genSalt(10);
+    const hashpass = await bycrpt.hash(this.pswd, salt);
+    this.pswd = hashpass;
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = mongoose.model("users", UserSchema); //creating the model of users with schema
