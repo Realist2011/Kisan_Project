@@ -6,14 +6,14 @@ const path = require("path");
 const hbs = require("hbs");
 const users = require("./models/kisan");
 const mongoose = require("mongoose");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.set("view engine", "hbs");
 
 const userRouter = require('./routes/user')
 hbs.registerPartials(__dirname+'/views/partials')
 const adminRouter = require('./routes/admin')
-app.use('/user',userRouter)
-app.use('/admin',adminRouter)
-
-
 app.use(async (req, res, next) => {
   try {
       let user = await users.findOne({ name: "Satvik Bajaj" });
@@ -24,12 +24,23 @@ app.use(async (req, res, next) => {
       next(err);
   }
 })
+app.use('/user',userRouter)
+app.use('/admin',adminRouter)
 
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set("view engine", "hbs");
+/*app.use(async (req, res, next) => {
+  try {
+      let user = await users.findOne({ name: "Satvik Bajaj" });
+      req.user = user;
+      console.log(req.user)
+      next()
+  } catch (err) {
+      next(err);
+  }
+})*/
+
+
+
 
 /*app.get("/", (req, res) => {
   const { name } = req.query;
@@ -68,6 +79,6 @@ app.set("view engine", "hbs");
 
 mongoose.connect("mongodb://127.0.0.1:27017/KisanCart").then(() => {
   app.listen(PORT, () => {
-    console.log(`Server is running on port : ${PORT}`);
+    console.log(`https ${PORT}`);
   });
 });

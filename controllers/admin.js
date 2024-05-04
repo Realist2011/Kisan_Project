@@ -29,16 +29,17 @@ const bodyParser = require('body-parser')
 }*/
 
 module.exports.postAddProduct = async(req,res,next)=>{
-    /*console.log(req.body)
-    const {name,price,seller,imageUrl,description,category} = bodyParser.json(req.body)*/
+    console.log(req)
+    const {name,price,seller,imageUrl,description,category} = req.body
+    console.log(name,price,seller,imageUrl,description,category)
     try{
         await products.create({
-            name:'sarthak',
-            price:'15000',
-            seller:'tanushk',
-            imageUrl:'sarthak.jpeg',
-            description:'dark web boy , lo fi girl',
-            category:'under 20 boys'
+            name,
+            price,
+            seller,
+            imageUrl,
+            description,
+            category
 
 
 

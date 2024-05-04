@@ -28,9 +28,13 @@
                 </div>
 
                 <div class="review-section-details hide">
-                    <textarea cols="40" rows="5" type="text" name="review" id="review"
+                    <form action="user/review/add" method="post"><textarea cols="40" rows="5" type="text" name="review" id="review"
                         placeholder="Enter a review"> </textarea>
-                    <button class="submitReview">Submit Review</button>
+                        <input type="text" name="productId">
+                    <button type="submit" class="submitReview">Submit Review</button></form>
+                    <!--<textarea cols="40" rows="5" type="text" name="review" id="review"
+                        placeholder="Enter a review"> </textarea>
+                    <button class="submitReview">Submit Review</button>-->
                     <div style="display: none;">{{product._id}}</div>
                 </div>
                 {{>reviewSection product=product}}

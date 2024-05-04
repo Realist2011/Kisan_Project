@@ -59,7 +59,7 @@ module.exports.getAddtoCartById = async (req, res, next) => {
 
 
 
-/*module.exports.getCartShow = async (req, res, next) => {
+module.exports.getCartShow = async (req, res, next) => {
     try {
         let user = await users.findOne({
             _id: req.user._id
@@ -176,4 +176,4 @@ module.exports.postAddReview = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-}*/
+}
