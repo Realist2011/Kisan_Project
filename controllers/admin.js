@@ -2,48 +2,23 @@ const mongoose = require("mongoose");
 const products = require("../models/products");
 const bodyParser = require("body-parser");
 
-/*module.exports.postAddProduct = async(req,res,next)=>{
-    console.log(req.body)
-    const{name,price,seller,imageUrl,description,category} = req.body
-    try{
-        await products.create({
-            name,
-            price,
-            seller,
-            imageUrl,
-            description,
-            category
-
-
-
-        })
-        res.redirect('/admin/products/all')
-    }
-    catch(err){
-        next(err)
-    }
-
-
-}*/
-
 module.exports.postAddProduct = async (req, res, next) => {
-  /*console.log(req.body)
-    const {name,price,seller,imageUrl,description,category} = bodyParser.json(req.body)*/
+  console.log(req.body);
+  const { name, price, seller, imageUrl, description, category } = req.body;
   try {
     await products.create({
-      name: "sarthak",
-      price: "15000",
-      seller: "tanushk",
-      imageUrl: "sarthak.png",
-      description: "dark web boy , lo fi girl",
-      category: "under 20 boys",
+      name,
+      price,
+      seller,
+      imageUrl,
+      description,
+      category,
     });
     res.redirect("/admin/products/all");
   } catch (err) {
     next(err);
   }
 };
-
 module.exports.getProductsAll = async (req, res, next) => {
   try {
     let allProducts = await products.find();
