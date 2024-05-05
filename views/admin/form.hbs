@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+<<<<<<< HEAD
 </head>
 <body>
 
@@ -15,7 +15,42 @@
     <input type="text" name="description" id="description">
     <input type="text" name="category" id="category">
     <button type="submit">Submit form</button>
+=======
+  </head>
+  <style>
+    *{ font-family:monospace; } body{ padding-left: 5%; background-image:
+    url("https://img.freepik.com/premium-photo/fresh-healthy-vegetable-fruits-seen-from-isolated-green-background-with-copy-space_709963-1630.jpg");
+    background-size: cover; background-repeat: no-repeat;
+    background-position:right ;} .b{ width: 60%; border-top: 5px solid
+    rgba(206,213,107,255);border-bottom: 5px solid rgba(206,213,107,255);
+    border-left: 5px solid rgba(206,213,107,255); border-radius: 50px;
+    padding:5px; display: flex; flex-direction: column; padding-left:20px ;}
+    .inp{ width: 50%; height: 5vh; } .sub{ width: 10vw; height: 10vh; position:
+    relative; left: 70%; background-color: rgba(206,213,107,255); border-radius:
+    15px; } .d{ height: 10vh; }
+  </style>
+  <body>
+    <div class="heading">
+      <h1>ADD A PRODUCT</h1>
+    </div>
+    <form action="/admin/addproduct" method="post">
+      <div class="b">
+        <h2>Add product details here </h2>
+        <p>Name of the product</p><input class="inp" type="text" name="name" />
+        <p>Price</p><input class="inp" type="number" name="price" />
+        <p>Seller Name</p><input class="inp" type="text" name="seller" />
+        <p>Image Url</p><input class="inp" type="text" name="imageUrl" />
+        <p>Description</p><input class="inp" type="text" name="description" />
+        <p>Category</p><textarea
+          class="inp d"
+          name="category"
+          rows="5"
+          cols="50"
+        ></textarea>
+        <button class="sub" type="submit">Submit form</button>
+      </div>
+>>>>>>> f75511bbd96009ba7bd3f4b7246f06188f848327
     </form>
-    
-</body>
+
+  </body>
 </html>
