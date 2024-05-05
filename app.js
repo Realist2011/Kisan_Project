@@ -12,12 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "hbs");
 
-const userRouter = require('./routes/user')
-hbs.registerPartials(__dirname+'/views/partials')
-const adminRouter = require('./routes/admin')
-app.use('/user',userRouter)
-app.use('/admin',adminRouter)
-
 
 app.use(async (req, res, next) => {
   try {
@@ -29,6 +23,15 @@ app.use(async (req, res, next) => {
       next(err);
   }
 })
+
+const userRouter = require('./routes/user')
+hbs.registerPartials(__dirname+'/views/partials')
+const adminRouter = require('./routes/admin')
+app.use('/user',userRouter)
+app.use('/admin',adminRouter)
+
+
+
 
 
 
