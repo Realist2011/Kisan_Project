@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const {Schema} = mongoose
+
 const productSchema = new Schema({
     name:{
         type:String,
         required:true
-
     },
     seller:{
         type:String,
@@ -18,13 +18,16 @@ const productSchema = new Schema({
         type:String
     },
     description:String,
-    date:{type:Date,default:Date.now},
+    date:{
+        type:Date,
+        default:Date.now,
+        // set:Date.setHours(0,0,0,0)
+    },
     reviews:[{
         details:String,
         userId:{
             type:Schema.Types.ObjectId,
             ref:'users'
-
         }
     }],
     category:{

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.set("view engine", "hbs");
 app.use(async (req, res, next) => {
   try {
-    let user = await users.findOne({ name: "tanushk nirmal" });
+    let user = await users.findOne({ name: "Sarthak Baluni" });
     req.user = user;
     console.log(req.user);
     next();
