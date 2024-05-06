@@ -31,16 +31,9 @@ module.exports.getProductById = async (req, res, next) => {
 module.exports.getAddtoCartById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    // console.log(id);
-    let t = await users.findOne({ name: "tanushk nirmal" });
-    // console.log(t);
-    let cart = t.cart;
-    console.log(cart);
+    const cart = req.user.cart;
     let index = -1;
     cart.forEach((item, indx) => {
-      //   if (item.id == null) {
-      //     let del = delete req.user.cart[indx];
-      //   }
       if (item.id == id) {
         index = indx;
       }
