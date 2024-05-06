@@ -17,7 +17,7 @@
             Description: <span>{{product.description}}</span><br>
             Price: <span>{{product.price}}</span><br>
             Seller: <span> {{product.seller}}</span><br>
-            Date: <span>Date {{product.date}}</span><br>
+            Date: <span>Date {{product.date.toISOString().split('T')[0]}}</span><br>
             <a href="/user/cart/add/{{product._id}}">Add To Cart</a>
         </div>
 
