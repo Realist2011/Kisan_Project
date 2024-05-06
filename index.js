@@ -2,8 +2,8 @@
 //---------------------------------------------------------------
 let images = [];
 images.push("banner1.png");
-images.push("banner2.jpg");
-images.push("banner3.jpg");
+images.push("banner2.png");
+images.push("banner3.png");
 let index = 0;
 let banner = document.querySelector(".banner");
 banner.style.backgroundImage = `url(${images[index]})`;

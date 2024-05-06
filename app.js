@@ -8,27 +8,26 @@ const users = require("./models/kisan");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+app.use(express.static(path.dirname("index.html")));
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.set("view engine", "hbs");
+app.use(async (req, res, next) => {
+  try {
+    let user = await users.findOne({ name: "tanushk nirmal" });
+    req.user = user;
+    console.log(req.user);
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 const userRouter = require("./routes/user");
 hbs.registerPartials(__dirname + "/views/partials");
 const adminRouter = require("./routes/admin");
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 
-app.use(express.static(path.dirname("index.html")));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set("view engine", "hbs");
-app.use(async (req, res, next) => {
-  try {
-      let user = await users.findOne({ name: "Satvik Bajaj" });
-      req.user = user;
-      console.log(req.user)
-      next()
-  } catch (err) {
-      next(err);
-  }
-})
 /*app.get("/", (req, res) => {
   const { name } = req.query;
   res.send(`Hey mofo ${name}`);
