@@ -32,8 +32,8 @@
 
     <script >
         let items = document.querySelector('.cartItems')
-items.addEventListener('click',(ev)=>{
-    if( ev.target.classList.contains('decrease')){
+        items.addEventListener('click',(ev)=>{
+        if( ev.target.classList.contains('decrease')){
         let id = ev.target.parentElement.nextElementSibling.getAttribute('id')
         axios.get(`/user/cart/decrease?id=${id}`).then(({data})=>{
             let {cart,totalPrice,cartQuantity} = data 
@@ -60,7 +60,7 @@ items.addEventListener('click',(ev)=>{
             alert("Not able to update cart");
         })
     }
-    else if(ev.target.classList.contains('increaseQuantityBtn')){
+    else if(ev.target.classList.contains('increase')){
         let id = ev.target.parentElement.nextElementSibling.getAttribute('id');
         // console.log(id);
         axios.get(`/user/cart/increase?id=${id}`).then(({ data }) => {
