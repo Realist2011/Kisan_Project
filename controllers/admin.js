@@ -19,6 +19,7 @@ module.exports.postAddProduct = async (req, res, next) => {
     next(err);
   }
 };
+///////////
 module.exports.getProductsAll = async (req, res, next) => {
   try {
     let allProducts = await products.find();
