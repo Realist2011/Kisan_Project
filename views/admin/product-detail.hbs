@@ -166,6 +166,10 @@
                 background-color: lightgreen;
                 transition: 200ms;
             }
+            a{
+                text-decoration: none;
+                color:black
+            }
         </style>
 
         <title>Document</title>
@@ -173,7 +177,7 @@
 
     <body>
 
-        {{>navbar}}
+    {{>navbar}}
         <h1>PRODUCT DETAILS</h1>
 
         <div class="main">
@@ -187,8 +191,8 @@
                 <div class="subDetails">Seller  :   {{product.seller}}</div>
                 <div class="subDetails">Date  :  {{product.date}}</div>
                 <div class="button-container">
-                    <button class="button">Update</button>
-                    <button class="button">Delete</button>
+                    <a href="/updateproduct/id"><button class="button">Update</button></a>
+                   <a href=""><button class="button">Delete</button></a>
                 </div>
             </div>
         </div>

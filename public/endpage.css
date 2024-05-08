@@ -1,0 +1,59 @@
+.endpage {
+  height: 40vh;
+  /* background-color: #018749; */
+  background-color: lightgreen;
+  display: flex;
+  padding-top: 3%;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.boxes {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.box6 {
+  width: 15%;
+  /* border: 1px solid black; */
+  margin: 1vw;
+}
+.headtext {
+  font-size: 1.4vw;
+  height: 10%;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.endcontentbox {
+  border-top: 1px solid black;
+  line-height: -2px;
+  box-sizing: border-box;
+  margin: 0.2vw;
+}
+.box7 {
+  height: 4.5vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+.lastdiv {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #1f1f1f;
+  justify-content: space-between;
+}
+.socials {
+  color: white;
+  padding-left: 3vw;
+}
+.platforms {
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+}
+.fa-brands {
+  font-size: 5vh;
+}

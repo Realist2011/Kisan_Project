@@ -15,6 +15,7 @@ function changeslide(bool) {
   }
   banner.style.backgroundImage = `url(${images[index]})`;
   console.log(index);
+  clearInterval(intervalid);
 }
 let nextslide = document.getElementById("next_banner");
 let prevslide = document.getElementById("previous_banner");
@@ -25,6 +26,17 @@ nextslide.addEventListener("click", function () {
 prevslide.addEventListener("click", function () {
   changeslide(false);
 });
+
+function changeslideauto() {
+  banner.style.backgroundImage = `url(${images[index]})`;
+  if (index < images.length - 1) index++;
+  else index = 0;
+  console.log("called");
+}
+let intervalid = setInterval(() => {
+  changeslideauto();
+}, 5000);
+window.onload = changeslideauto;
 //---------------------------------------------------------
 const nextprotbutton = document.getElementById("next_product_protection");
 const prevprotbutton = document.getElementById("previous_product_protection");

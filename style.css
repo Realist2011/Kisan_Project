@@ -201,7 +201,7 @@ a {
   background-image: url("banner1.png");
   background-size: cover;
   justify-content: space-between;
-  transition: background-image 1s ease-in-out;
+  transition: background-image 1.5s ease;
 }
 .change_banner {
   background-color: white;
@@ -302,7 +302,8 @@ a {
 }
 .endpage {
   height: 40vh;
-  background-color: #018749;
+  background-color: lightgreen;
+  /* #018749 */
   display: flex;
   padding-top: 3%;
   justify-content: center;

@@ -3,30 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <title>Document</title>
+    <style>
+        .cartItems{
+            display: flex;
+            {{!-- border: 1px solid black; --}}
+            justify-content: center;
+            justify-content: space-evenly;
+            
+            {{!-- background-image: url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMy1jaGltLTIyLXEtd2FsbC5qcGc.jpg); --}}
+            
+            background-size: cover;
+            border-radius: 20px;
+          
+        }
+        body{background-color: rgba(234,237,237,255);}
+        .cartitem{
+            border-bottom: 2px solid black;
+            border-radius: 10px;
+            border-left:1px solid black;;
+            box-shadow: 1px 1px 1px 1px;
+            display: flex;
+            margin: 2vh;
+            height: 35vh;
+            justify-content: space-between;
+            margin: 3vh;
+            background-color: white;
+        }
+        .Allitems{
+            width: 65%;
+        }
+        .proddetails{
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            font-size: 1.2rem;
+            
+        }
+        .prodimage{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .prodimage img{
+            width: 90%;
+            height: 80%;
+            border-radius: 10px;
+
+        }
+        h1{
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        .paymentdetails{
+            border: 1px solid black;
+            width: 20%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            font-size: larger;
+            font-weight: bold;
+            margin-top: 10vh;
+            background-color: white;
+           
+        }
+        .checkout{
+            width: 14vw;
+            height: 7vh;
+            border: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bolder;
+            background-color:rgb(212, 117, 1);
+            color: white;
+            border-radius: 10px;
+        }
+        .checkout:hover{
+            cursor: pointer;
+        }
+        .fancyborder{
+            border: 2px solid rgb(39, 38, 38);
+            height: 70vh;
+            border-radius: 60%;
+        }
+        .decrease,.increase{
+            font-size: 4vh;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+        }
+        .decrease,.increase:hover{
+            cursor: pointer;
+        }
+        .fa-truck-fast{
+            font-size: larger;
+        }
+    </style>
 </head>
 <body>
 
     {{>navbar cartQuantity = cartQuantity}}
-    <h1>My Cart</h1>
-    Total Price <span class="Total Price">{{totalPrice}}</span>
-    <ul class="cartItems">
-        {{#each cart as |p|}}
-        <li>
-            <img src="{{p.id.imageUrl}}" height="150px" width="150px" ><br>
-            Name: <span>{{p.id.name}}</span><br>
-            Description: <span>{{p.id.desccription}}</span><br>
-            Price: <span>{{p.id.price}}</span><br>
-
-
+    <h1>Cart</h1>
+    
+    <div class="cartItems">
+        <div class="Allitems">
+            {{#each cart as |p|}}
+        <div class="cartitem">
+            <div class="prodimage"><img src="{{p.id.imageUrl}}" height="150px" width="150px" ></div>
+            <div class="proddetails"><div class="name">Name: {{p.id.name}}</div>
+            <div class="desc"> Description: {{p.id.desccription}}</div>
+            <div class="price">Price: {{p.id.price}}</div>
             <div class="quantity">
-                <button id='{{p.id._id}}' class="decrease">-</button>Quantity:{{p.quantity}}
-                <button id='{{p.id._id}}' class="increase">+</button>
+                <button id='{{p.id._id}}' class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
+                <button id='{{p.id._id}}' class="increase"><i class="fa-regular fa-square-plus"></i></button>
             </div>
-            <div style="display:none" id="{{p.id._id}}"></div>
-        </li>
+            <div style="display:none" id="{{p.id._id}}"></div></div>
+
+
+            
+        </div>
         {{/each}}
-    </ul>
+        </div>
+        <div class="fancyborder"></div>
+       <div class="paymentdetails">
+        <div class="totalprice"> Total Price: {{totalPrice}} </div>
+        <button class="checkout" type="submit">Checkout<i class="fa-solid fa-truck-fast" style="color: #63E6BE;"></i> </button>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 
