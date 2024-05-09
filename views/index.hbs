@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+
+    nav{
+      display: flex;
+      justify-content: space-around;
+    }
+    .item-list{
+      display: flex;
+      flex-direction: row;
+      column-gap: 5px;
+
+
+    }
+
+    .item{
+      border: 2px solid black;
+
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/">Home</a>
+
+    <a href="#">
+      <input type="text" name='searchbar' placeholder="Enter product to search">
+    </a>
+
+    <a href="#">
+      Login
+    </a>
+  </nav>
+
+  {{#each products as |product|}}
+  <div class="category">{{@key}}</div>
+  <div class="item-list">
+    {{#each product as |p|}}
+    <div class="item">
+      <a href="/user/products/{{p._id}}">
+      <img src={{p.imageUrl}} height="150px"><br>
+      Name: <span>{{p.name}}</span> <br>
+      Description: <span>{{p.description}}</span><br>
+      Price: <span>{{p.price}}</span><br>
+      </a>
+    </div>
+    {{/each}}
+  </div>
+  <br>
+  <br>
+  <br>
+  {{/each}}
+
+
+  
+</body>
+</html>

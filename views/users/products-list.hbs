@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            * {
+                margin: 0;
+            }
+
+            .navbar {
+                margin-left: 0px;
+                width: 100%;
+                height: 16vh;
+                background-color: lightgreen;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                padding: 1vh;
+                padding-top: 0;
+                padding-bottom: 0;
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .navbar a {
+                padding: 2vw;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+            li{
+                font-size: 20px;
+                padding-bottom: 20px;
+                font-weight: 600;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        {{>navbar}}
+
+        <ul>
+            {{#each products as |p|}}
+            <li>
+                <img height="150px" src="{{p.imageUrl}}"><br>
+                Name:<span>{{p.name}}</span><br>
+                Description: <span>
+                    {{p.description}}
+
+                </span><br>
+                Price: <span>{{p.price}}</span><br>
+                <a href="{{p._id}}">Get Info</a>
+                <a href="/user/cart/add/{{p._id}}">Add to Cart</a>
+            </li>
+            {{/each}}
+        </ul>
+
+    </body>
+
+</html>

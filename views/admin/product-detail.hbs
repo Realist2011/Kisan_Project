@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{>navbar}}
+    <h1>Welcome to product details page</h1>
+    <ul>
+        <li>
+            <img height="150px" src={{product.imageUrl}}></img><br>
+            Name: <span>{{product.name}}</span> <br>
+            Description: <span>{{product.description}}</span><br>
+            Price: <span>{{product.price}}</span><br>
+            Seller: <span> {{product.seller}}</span><br>
+            Date: <span>Date {{product.date}}</span><br>
+        </li>
+    </ul>
+</body>
+</html>
