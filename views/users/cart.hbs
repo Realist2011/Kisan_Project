@@ -121,11 +121,11 @@
         <div class="cartitem">
             <div class="prodimage"><img src="{{p.id.imageUrl}}" height="150px" width="150px" ></div>
             <div class="proddetails"><div class="name">Name: {{p.id.name}}</div>
-            <div class="desc"> Description: {{p.id.desccription}}</div>
+            <div class="desc"> Description: {{p.id.description}}</div>
             <div class="price">Price: {{p.id.price}}</div>
             <div class="quantity">
-                <button id='{{p.id._id}}' class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
-                <button id='{{p.id._id}}' class="increase"><i class="fa-regular fa-square-plus"></i></button>
+                <button id={{p.id._id}} class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
+                <button id={{p.id._id}} class="increase"><i class="fa-regular fa-square-plus"></i></button>
             </div>
             <div style="display:none" id="{{p.id._id}}"></div></div>
 
@@ -161,8 +161,8 @@
             Price: <span>${p.id.price}</span><br>
                 `
                 li.innerHTML += `<div class="quantity">
-                                    <button class="decreaseQuantityBtn">-</button> Quantity: ${p.quantity} <button
-                                         class="increaseQuantityBtn">+</button>
+                                    <button class="decrease">-</button> Quantity: ${p.quantity} <button
+                                         class="increase">+</button>
                                 </div>
                                 <div style="display: none;" id="${p.id._id}"></div>
             `
@@ -199,8 +199,8 @@
                 // }
                 // li.innerText += str;
                 li.innerHTML += `<div class="quantity">
-                                    <button class="decreaseQuantityBtn">-</button> Quantity: ${p.quantity} <button
-                                         class="increaseQuantityBtn">+</button>
+                                    <button class="decrease">-</button> Quantity: ${p.quantity} <button
+                                         class="increase">+</button>
                                 </div>
                                 <div style="display: none;" id="${p.id._id}"></div>
             `

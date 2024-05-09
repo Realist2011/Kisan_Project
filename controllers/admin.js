@@ -22,12 +22,11 @@ module.exports.postAddProduct = async (req, res, next) => {
 ///////////
 module.exports.getProductsAll = async (req, res, next) => {
   try {
-    // let { page, limit } = req.query;
-    // if (!page) page = 1;
-    // if (!limit) limit = 8;
-    // let skip = (page - 1) * limit;
-    let allProducts = await products.find();
-    // .skip(skip).limit(limit);
+    let { page, limit } = req.query;
+    if (!page) page = 1;
+    if (!limit) limit = 15;
+    let skip = (page - 1) * limit;
+    let allProducts = await products.find().skip(skip).limit(limit);
     res.render("admin/products-list", { products: allProducts });
     console.log();
   } catch (err) {
@@ -97,6 +96,27 @@ module.exports.getDeleteProduct = async (req, res, next) => {
     const product = await products.deleteOne({
       _id: new mongoose.Types.ObjectId(id),
     });
+
+    /*let arr = req.user.cart.filter((val, arr, indx) => {
+      return val.id != id;
+    });
+    req.user.cart = arr;*/
+
+    //const user = await kisan.find({_id:req.user._id})
+    /*req.user.cart.forEach((element) => {
+      if (element.id == id) {
+        let i = req.user.cart.splice(
+          req.user.cart.indexOf(element),
+          req.user.cart.indexOf(element) + 1
+        );
+      }
+    });*/
+    /* console.log(req.user.cart);
+    res.redirect("/user/cart/show");*/
+
+    /*array.forEach((element, => {
+      
+    });*/
   } catch (err) {
     next(err);
   }
