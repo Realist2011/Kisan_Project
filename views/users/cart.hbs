@@ -144,7 +144,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 
     <script >
-        let items = document.querySelector('.cartItems')
+        let items = document.querySelector('.cartItem')
         items.addEventListener('click',(ev)=>{
         if( ev.target.classList.contains('decrease')){
         let id = ev.target.parentElement.nextElementSibling.getAttribute('id')
