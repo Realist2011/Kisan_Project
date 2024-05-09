@@ -1,115 +1,375 @@
+{{!--
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
 
-   
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        *{
-            margin: 0;
-        }
-        a{
-            text-decoration: none;
-            color: black;
-        }
-        
-    #sidebar {
-    grid-area: sidebar;
-    height: 100%;
-    background-color: #263043;
-    overflow-y: auto;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-  }
-  
-  .sidebar-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 30px 30px 30px;
-    margin-bottom: 30px;
-  }
-  body{
-    display: flex;
-  }
-  .sidebar-title > span {
-    display: none;
-  }
-  
-  .sidebar-brand {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  
-  .sidebar-list {
-    padding: 0;
-    margin-top: 15px;
-    list-style-type: none;
-  }
-  
-  .sidebar-list-item {
-    padding: 20px 20px 20px 20px;
-    font-size: 18px;
-  }
-  
-  .sidebar-list-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-  }
-  
-  .sidebar-list-item > a {
-    text-decoration: none;
-    color: #9e9ea4;
-  }
-  
-  .sidebar-responsive {
-    display: inline !important;
-    position: absolute;
-    /*
+      * {
+        margin: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      #sidebar {
+        grid-area: sidebar;
+        height: 100%;
+        background-color: #263043;
+        overflow-y: auto;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+      }
+
+      .sidebar-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 30px 30px 30px;
+        margin-bottom: 30px;
+      }
+
+      body {
+        display: flex;
+      }
+
+      .sidebar-title>span {
+        display: none;
+      }
+
+      .sidebar-brand {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .sidebar-list {
+        padding: 0;
+        margin-top: 15px;
+        list-style-type: none;
+      }
+
+      .sidebar-list-item {
+        padding: 20px 20px 20px 20px;
+        font-size: 18px;
+      }
+
+      .sidebar-list-item:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+
+      .sidebar-list-item>a {
+        text-decoration: none;
+        color: #9e9ea4;
+      }
+
+      .sidebar-responsive {
+        display: inline !important;
+        position: absolute;
+        /*
       the z-index of the ApexCharts is 11
       we want the z-index of the sidebar higher so that
       the charts are not showing over the sidebar 
       on small screens
     */
-    z-index: 12 !important;
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: 260px 1fr 1fr 1fr;
-    grid-template-rows: 0.2fr 3fr;
-    grid-template-areas:
-      'sidebar header header header'
-      'sidebar main main main';
-    height: 100vh;
-  }
-  .cartquantity{
-    border: 10px solid black;
-  }
-  
+        z-index: 12 !important;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: 260px 1fr 1fr 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas:
+          'sidebar header header header'
+          'sidebar main main main';
+        height: 100vh;
+      }
+
+      .cartquantity {
+        border: 10px solid black;
+      }
+
+      .formclass {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 8vh;
+      }
+
+      h1 {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 40px;
+      }
+
+      .mainbody {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10vh;
+        width: 80%;
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
     {{>sidebar cartQuantity=cartQuantity}}
-    <h1>Admin Products List</h1>
-    <form action="/admin/products/updateproduct" method="post">
-        <ul>
-            <li>
-                <img src={{product.imageUrl}}></img><br>
-                Image Url: <input type="text" name="imageUrl" value={{product.imageUrl}}><br>
-                Name: <input type="text" name="name" value={{product.name}}></input> <br>
-                Description: <input type="text" name="description" value={{product.description}}></input> <br>
-                Price: <input type="text" name="price" value={{product.price}}></input> <br>
-                Seller: <input type="text" name="seller" value={{product.seller}}></input> <br>
-                <input type="hidden" name="id" value={{product._id}}></input>
-                {{>reviewSection product=product}}
-            </li>
-        </ul>
+    <div class="mainbody">
+      <h1>Update Product</h1>
+      <form class="formclass" action="/admin/products/updateproduct" method="post">
+
+        <img src={{product.imageUrl}}></img><br>
+        Image Url: <input type="text" name="imageUrl" value={{product.imageUrl}}><br>
+        Name: <input type="text" name="name" value={{product.name}}></input> <br>
+        Description: <input type="text" name="description" value={{product.description}}></input> <br>
+        Price: <input type="text" name="price" value={{product.price}}></input> <br>
+        Seller: <input type="text" name="seller" value={{product.seller}}></input> <br>
+        <input type="hidden" name="id" value={{product._id}}></input>
+        {{>reviewSection product=product}}
+
         <button type="submit">Update Product</button>
-</body>
+    </div>
+  </body>
+
+</html> --}}
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      font-family: monospace;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    a {
+      font-size: 1.6rem;
+    }
+
+    body {
+      display: flex;
+      margin: 0px;
+      padding: 0px;
+      background-image: url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #sidebar {
+      grid-area: sidebar;
+      height: 100%;
+      background-color: #263043;
+      overflow-y: auto;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+      width: 15vw;
+      padding-top: 3vh;
+      line-height: 2;
+      box-sizing: border-box;
+    }
+
+    .sidebar-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 30px 30px 30px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar-title>span {
+      display: none;
+    }
+
+    .sidebar-brand {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .sidebar-list {
+      padding: 0;
+      margin-top: 15px;
+      list-style-type: none;
+    }
+
+    .sidebar-list-item {
+      padding: 20px 20px 20px 20px;
+      font-size: 18px;
+    }
+
+    .sidebar-list-item:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+
+    .sidebar-list-item>a {
+      text-decoration: none;
+      color: #9e9ea4;
+    }
+
+    .sidebar-responsive {
+      display: inline !important;
+      position: absolute;
+      /*
+      the z-index of the ApexCharts is 11
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+      z-index: 12 !important;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 260px 1fr 1fr 1fr;
+      grid-template-rows: 0.2fr 3fr;
+      grid-template-areas:
+        'sidebar header header header'
+        'sidebar main main main';
+      height: 100vh;
+    }
+
+    .cartquantity {
+      border: 10px solid black;
+    }
+    
+    .formdiv {
+      width: 90%;
+      height: 85%;
+      padding: 5px;
+      display: flex;
+      flex-direction: row;
+      padding-left: 20px;
+      justify-content: space-evenly;
+    }
+
+    .leftformdiv {
+      width: 100%;
+      border-top: 5px solid rgba(100, 255, 107, 255);
+      border-bottom: 5px solid rgba(100, 255, 107, 255);
+      border-left: 5px solid rgba(100, 255, 107, 255);
+      border-radius: 50px;
+      padding: 2vw;
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 2.5;
+    }
+
+    input {
+      width: 65%;
+      height: 4.9vh;
+      border-radius: 10px;
+      text-indent: 10px;
+    }
+
+    .sub {
+      width: 10vw;
+      height: 7vh;
+      font-weight: bolder;
+      background-color: white;
+      border-radius: 15px;
+      margin-top: 8vh;
+      position: relative;
+      left: 35vw;
+      bottom: 9.5vh;
+    }
+
+    .sub:hover {
+      background-color: rgba(100, 255, 107, 255);
+      color: black;
+    }
+
+    .d {
+      height: 10vh;
+    }
+
+    h1 {
+      margin: 4vh auto 3vh 3vw;
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-weight: bolder;
+      font-size: 2.5rem;
+      margin-top: -3vh;
+    }
+    .maindiv {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      overflow-y: hidden;
+    }
+
+    .rightformdiv {
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      height: 20vw;
+      width: 20vw;
+      border: solid 3px;
+      border-radius: 50%;
+    }
+    
+  </style>
+
+  <body>
+    {{>sidebar cartQuantity=cartQuantity}}
+
+    <div class="maindiv">
+      <div class="heading">
+        <h1>UPDATE PRODUCT</h1>
+      </div>
+      <form action="/admin/products/updateproduct" method="post" class="form">
+      <div class="formdiv">
+
+        <div class="leftformdiv">
+
+          <h2>Add product details here </h2>
+          Image Url: <br><input type="text" name="imageUrl" value={{product.imageUrl}}><br>
+          Name: <br><input type="text" name="name" value={{product.name}}></input> <br>
+          Description: <br><input type="text" name="description" value={{product.description}}></input> <br>
+          Price: <br><input type="text" name="price" value={{product.price}}></input> <br>
+          Seller: <br><input type="text" name="seller" value={{product.seller}}></input> <br>
+          <input type="hidden" name="id" value={{product._id}}></input>
+          {{>reviewSection product=product}}
+          <button class="sub" type="submit">Update Product</button>
+        </div>
+        <div class="rightformdiv">
+          <div class="innerdiv"><img src={{product.imageUrl}}></img></div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+
+  </body>
+
 </html>
