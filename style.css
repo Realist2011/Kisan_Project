@@ -69,26 +69,26 @@ body {
   height: 5vh;
   display: flex;
   align-items: center;
+  position: relative;
 }
 #searchInput {
-  width: 90%;
-  height: 4.8vh;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-.fa-magnifying-glass {
-  font-size: 1.7vw;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 .searchbutton {
-  width: 4vw;
-  height: 4.99vh;
+  height: 100%;
   border-radius: 0;
-  background-color: white;
-  border-bottom-right-radius: 100px;
-  border-top-right-radius: 100px;
+  background-color: transparent;
   border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+.searchbutton:hover {
+  cursor: pointer;
 }
 .size2 {
   height: 8vh;

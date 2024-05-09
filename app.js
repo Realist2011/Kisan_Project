@@ -12,6 +12,17 @@ app.use(express.static(path.dirname("index.html")));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "hbs");
+app.use(
+  require("express-session")({
+    secret: "keyboard dog",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+const passport = require("passport");
+app.use(passport.initialize());
+app.use(passport.session());
+// require("./authentication/passport");
 app.use(async (req, res, next) => {
   try {
     let user = await users.findOne({ name: "tanushk nirmal" });
@@ -22,9 +33,17 @@ app.use(async (req, res, next) => {
     next(err);
   }
 });
+app.use(
+  require("express-session")({
+    secret: "keyboard dog",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 const userRouter = require("./routes/user");
 hbs.registerPartials(__dirname + "/views/partials");
 const adminRouter = require("./routes/admin");
+
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 
