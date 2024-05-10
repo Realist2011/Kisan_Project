@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 const UserSchema = new Schema({
-  username: {
+  name: {
     type: String,
     required: true,
   },
-  password: {
+  pswd: {
     type: String,
     required: true,
   },
