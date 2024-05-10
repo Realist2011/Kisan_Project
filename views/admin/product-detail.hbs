@@ -7,9 +7,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-            rel="stylesheet">
+         <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
             * {
                 margin: 0;
@@ -126,14 +132,17 @@
             .main {
                 display: flex;
                 align-items: center;
-                justify-content: space-evenly;
+                justify-content: space-between;
+                width: 80%
+                
             }
 
             img {
-                height: 400px;
-                width: 400px;
-                border:2px solid whitesmoke ;
-                border-radius: 50%;
+                height: 20vw;
+            width: 20vw;
+            border: solid 3px;
+            border-radius: 50%;
+            margin-right: 30px;
             }
 
             .subDetails {
@@ -170,19 +179,111 @@
                 text-decoration: none;
                 color:black
             }
+            body {
+      margin: 0px;
+      padding: 0px;
+      background-image: url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .right{
+        margin-top: 5vh;
+    }
+    .centerpage{
+        display: flex;
+    }
+
+    #sidebar {
+      grid-area: sidebar;
+      height: 100%;
+      background-color: #263043;
+      overflow-y: auto;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+      width: 15vw;
+      padding-top: 3vh;
+      line-height: 2;
+      box-sizing: border-box;
+    }
+
+    .sidebar-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 30px 30px 30px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar-title>span {
+      display: none;
+    }
+
+    .sidebar-brand {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .sidebar-list {
+      padding: 0;
+      margin-top: 15px;
+      list-style-type: none;
+    }
+
+    .sidebar-list-item {
+      padding: 20px 20px 20px 20px;
+      font-size: 18px;
+    }
+
+    .sidebar-list-item:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+
+    .sidebar-list-item>a {
+      text-decoration: none;
+      color: #9e9ea4;
+    }
+
+    .sidebar-responsive {
+      display: inline !important;
+      position: absolute;
+      /*
+      the z-index of the ApexCharts is 11
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+      z-index: 12 !important;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 260px 1fr 1fr 1fr;
+      grid-template-rows: 0.2fr 3fr;
+      grid-template-areas:
+        'sidebar header header header'
+        'sidebar main main main';
+      height: 100vh;
+    } 
+    .content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
         </style>
 
         <title>Document</title>
     </head>
 
     <body>
-
-    {{>navbar}}
-        <h1>PRODUCT DETAILS</h1>
+    <div class="centerpage">
+         {{>sidebar}}
+        <div class="content"><h1>PRODUCT DETAILS</h1><br>
 
         <div class="main">
             <div class="left">
-                <img height="150px" src={{product.imageUrl}}></img>
+                <img height="" src={{product.imageUrl}}></img>
             </div>
             <div class="right">
                 <div class="subDetails">Name  :  {{product.name}} </div>
@@ -195,9 +296,9 @@
                    <a href="deleteproduct/{{product._id}}"><button class="button">Delete</button></a>
                 </div>
             </div>
-        </div>
+        </div></div>
+    </div>
 
-        <div class="space"></div>
         <div class="endpage">
             <div class="boxes">
                 <div class="box6">

@@ -265,6 +265,9 @@ a {
   cursor: pointer;
   transform: scale(1.1);
 }
+html {
+  scroll-behavior: smooth;
+}
 /* #protectionbox_7,
 #protectionbox_8,
 #protectionbox_9,
