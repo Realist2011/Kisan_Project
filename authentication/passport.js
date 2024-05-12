@@ -1,8 +1,33 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local')
-const kisan = require('../models/kisan')
+const users = require('../models/kisan')
 
+
+/*passport.use(new GoogleStrategy({
+    //clientID:,
+    //clientSecret:,
+    callbackURL:"http://localhost:4444/auth/google/callback"
+},
+    async function(accessToken,refreshToken,profile,cb){
+        try{
+            let user = await kisan.findOne({googleId:profile.id})
+            if(!user){
+                user = await users.create({
+                    googleId:profile.id,
+                    username:profile.displayName,
+                    googleAccessToken:accessToken,
+                    googleImg:profile.photos[0].value
+
+                })
+            }
+            return cb(null,user)
+
+        }
+        catch(err){
+            return cb(err)
+        }
+    }))*/
 
 passport.use(new LocalStrategy(
     async function(username,password,done){

@@ -31,6 +31,20 @@ app.use(async (req, res, next) => {
 
 const homerouter = require('./routes/home')
 
+app.post('/user/login',
+  passport.authenticate('local',{failureRedirect:'/login'}),
+  function(req,res){
+    res.redirect('/user/products/all')
+  }
+)
+
+app.get('/logout',function(req,res,next){
+  req.logout(function(err){
+    if(err){return next(err)}
+    res.redirect('/login')
+  })
+})
+
 const userRouter = require('./routes/user')
 hbs.registerPartials(__dirname+'/views/partials')
 const adminRouter = require('./routes/admin')
