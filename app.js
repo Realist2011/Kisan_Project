@@ -31,6 +31,10 @@ app.use(async (req, res, next) => {
 
 const homerouter = require('./routes/home')
 
+app.get('/user/login',(req,res,next)=>{
+  res.render('login')
+})
+
 app.post('/user/login',
   passport.authenticate('local',{failureRedirect:'/login'}),
   function(req,res){
@@ -38,12 +42,36 @@ app.post('/user/login',
   }
 )
 
+// app.get('/logout',function(req,res,next){
+//   req.logout(function(err){
+//     if(err){return next(err)}
+//     res.redirect('/auth/google')
+//   })
+// })
+
+app.get('/auth/google',
+  passport.authenticate('google',{scope:['profile']})
+)
+
+app.get('/auth/google/callback',
+  passport.authenticate('google',{failureRedirect:'/auth/google'}),
+  function(req,res){
+    res.redirect('/user/products/all')
+  }
+  
+)
+
 app.get('/logout',function(req,res,next){
   req.logout(function(err){
     if(err){return next(err)}
-    res.redirect('/login')
+    
+    res.redirect('/auth/google')
   })
 })
+
+// app.get('/google/logout',(req,res)=>{
+
+// })
 
 const userRouter = require('./routes/user')
 hbs.registerPartials(__dirname+'/views/partials')

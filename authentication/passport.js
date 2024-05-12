@@ -2,18 +2,21 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local')
 const users = require('../models/kisan')
+const google_users = require('../models/google_user')
+
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
-/*passport.use(new GoogleStrategy({
-    //clientID:,
-    //clientSecret:,
-    callbackURL:"http://localhost:4444/auth/google/callback"
+passport.use(new GoogleStrategy({
+    clientID:'110624499708-inj3e8j8j5a8d8tan0avdbmdsuc58s7n.apps.googleusercontent.com',
+    clientSecret:'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',
+    callbackURL:"http://localhost:3000/auth/google/callback"
 },
     async function(accessToken,refreshToken,profile,cb){
         try{
-            let user = await kisan.findOne({googleId:profile.id})
+            let user = await google_users.findOne({googleId:profile.id})
             if(!user){
-                user = await users.create({
+                user = await google_users.create({
                     googleId:profile.id,
                     username:profile.displayName,
                     googleAccessToken:accessToken,
@@ -27,12 +30,13 @@ const users = require('../models/kisan')
         catch(err){
             return cb(err)
         }
-    }))*/
+    }))
 
 passport.use(new LocalStrategy(
     async function(username,password,done){
         try{
-            let user = await kisan.findOne({username})
+            let user = await users.findOne({username})
+            console.log(user)
             if(!user) return done(null,false);
             bcrypt.compare(password,user.password,function(err,result){
                 if(err) return done(err);
@@ -45,7 +49,7 @@ passport.use(new LocalStrategy(
 
         }
         catch(err){
-            next(err)
+            if(err){return done(err)}
         }
     }
 
@@ -57,7 +61,7 @@ passport.serializeUser(function(user,done){
 
 passport.deserializeUser(async function(id,done){
     try{
-    let user = await kisan.findOne({_id:id})
+    let user = await users.findOne({_id:id})
     if(!user) return done(null,false);
     done(null,user)
     
