@@ -321,7 +321,7 @@ a {
 .change_banner {
   background-color: white;
   border: 0;
-  position: relative;
+  position: absolute;
   height: 15vh;
   width: 5vh;
 }
@@ -333,10 +333,13 @@ a {
 .previous_banner {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  top: 30vh;
 }
 .next_banner {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  top: 30vh;
+  right: 7px;
 }
 .category{
   padding-bottom: 3vh;
@@ -561,8 +564,7 @@ html {
       </div>
     </div>
     <div class="midpage">
-      <div class="banner border size4">
-        <button
+      <button
           name="previous_banner"
           id="previous_banner"
           class="previous_banner change_banner border"
@@ -576,7 +578,9 @@ html {
         >
           <i class="fa-solid fa-chevron-right"></i>
         </button>
-      </div>
+      <a href="user/products/all"><div class="banner border size4">
+        
+      </div></a>
     
 {{#each products as |product|}}
   <div class="category"><h2>{{@key}}</h2></div>
