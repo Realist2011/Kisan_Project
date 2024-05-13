@@ -1,56 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Document</title>
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+    />
     <style>
-        *{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .productContent{
-            border: 1px solid black;
-            width: 80%;
-            display: flex;
-            }
-        .productContent-1{
-            display: flex;
-            width: 100%;
-        }
-        .name{
-            font-size: 2rem;
-            display: flex;
-            flex-direction: column;
-            border-bottom: 1px solid grey;
-        }
-        .image,img{
-            height: 350px;
-            width: 350px;
-            border: 1px solid black;
-            border-radius: 20px;
-
-        }
-        .abc{
-            display: flex;
-            flex-direction: column;
-            margin-left: 60px;
-            width: 100%;
-            justify-content: space-evenly;
-        }
-        
+      *{ box-sizing: border-box; margin: 0; padding: 0; } body{ display: flex;
+      flex-wrap: wrap; justify-content: center; } .productContent{padding: 20px;
+      height: 100%; display: flex; background-color: white; } .productContent-1{
+      display: flex; width: 100%; align-items: center; } .name{ font-size: 2rem;
+      display: flex; flex-direction: column; border-bottom: 1px solid grey; }
+      img{ height: 350px; width: 350px; border: 1px solid black; border-radius:
+      20px; } .image{ height: 100%; display: flex; align-items: center; }
+      .fa-circle-xmark{ font-size: 2rem; } .abc{ height: 100%; display: flex;
+      flex-direction: column; margin-left: 60px; width: 100%; justify-content:
+      space-evenly; } .addtocart button{ background-color: black ; height: 5vh;
+      width: 20vh; color: white; border-radius: 20px; } .f{ font-size: 1.6rem; }
     </style>
     <style>
-        .navbar { width: 100%; height: 12vh; background-color:
-      lightgreen; display: flex; align-items: center; justify-content: center;
-      box-sizing: border-box; padding: 1vh; padding-top: 0; padding-bottom: 0; }
-      .bordr { border: 2px solid black; } .kklogo { height: 18vh; width: 8vw;
+      .navbar { width: 100%; height: 12vh; background-color: lightgreen;
+      display: flex; align-items: center; justify-content: center; box-sizing:
+      border-box; padding: 1vh; padding-top: 0; padding-bottom: 0; } .bordr {
+      border: 2px solid black; } .kklogo { height: 18vh; width: 8vw;
       background-size: contain; background-repeat: no-repeat;
       background-position: center; background-image: url("KISAN_KART.png"); }
       .uppercontent { box-sizing: border-box; padding: 1vh; display: flex;
@@ -81,27 +55,29 @@
       flex-direction: column; justify-content: space-evenly; justify-content:
       center; padding: 0.4vh; align-items: center; font-weight: bold; }
     </style>
-</head>
-<body>
-    {{>navbar}}
-    <div class="productContent">
-        <div class="productContent-1">
-            <div class="image"><img height="300px" src={{product.imageUrl}}></img><br></div>
-            <div class="abc">
-                <div class="category">
-                    {{product.category}}
-                </div>
-                <div class="name">
-                    {{product.name}}
-                </div>
-                <div class="price">Price: <span>{{product.price}}₹</span></div>
-                <div class="seller">Seller: <span> {{product.seller}}</span></div>
-                {{!-- <div class="date">Date: <span>Date {{product.date}}</span></div> --}}
-                <div class="addtocart"><a href="/user/cart/add/{{product._id}}"><button>Add To Cart</button></a></div>
-            </div>
+  </head>
+  <body>
+    <div class='productContent'>
+      <div class='productContent-1'>
+        <div class='image'><img height='300px' src={{product.imageUrl}} /><br
+          /></div>
+        <div class='abc'>
+          <div class='category f'>
+            {{product.category}}
+          </div>
+          <div class='name'>
+            {{product.name}}
+          </div>
+          <div class='price f'>Price: <span>{{product.price}}₹</span></div>
+          <div class='seller f'>Seller: <span> {{product.seller}}</span></div>
+          {{!-- <div class="date">Date: <span>Date {{product.date}}</span></div> --}}
+          <div class='addtocart'><a
+              href='/user/cart/add/{{product._id}}'
+            ><button>Add To Cart</button></a></div>
         </div>
+      </div>
 
-        {{!-- <div class="productContent-2">
+      {{!-- <div class="productContent-2">
             <div class="review-section">
                 <div class="review-section-header">
                     <div>Reviews</div> <button class="reviewBtn">Add a Review</button>
@@ -116,39 +92,25 @@
                 {{>reviewSection product=product}}
             </div>
         </div> --}}
-
-        <div class="clearfix"></div>
+      <div class='clearfix'></div>
     </div>
-
-
-
     <script>
-        document.querySelector(".reviewBtn").addEventListener('click', (ev) => {
-            ev.preventDefault();
-            document.querySelector(".review-section-details").classList.toggle('hide');
-        })
-
-        document.querySelector('.submitReview').addEventListener('click', (ev) => {
-            ev.preventDefault();
-            let review = document.querySelector('#review').value.trim();
-            console.log(review);
-            let id = ev.target.nextElementSibling.innerText;
-            console.log(id);
-            axios.post('/user/review/add', {
-                review,
-                productId: id
-            }).then(({ data }) => {
-                // console.log(data);
-                document.querySelector('.user-reviews').innerText = "";
-                data.reviews.forEach(r => {
-                    let li = document.createElement('li');
-                    li.innerText = r.details;
-                    document.querySelector('.user-reviews').appendChild(li);
-                });
-            })
-            document.querySelector(".review-section-details").classList.toggle('hide');
-        })
+      document.querySelector(".reviewBtn").addEventListener('click', (ev) => {
+      ev.preventDefault();
+      document.querySelector(".review-section-details").classList.toggle('hide');
+      }) document.querySelector('.submitReview').addEventListener('click', (ev)
+      => { ev.preventDefault(); let review =
+      document.querySelector('#review').value.trim(); console.log(review); let
+      id = ev.target.nextElementSibling.innerText; console.log(id);
+      axios.post('/user/review/add', { review, productId: id }).then(({ data })
+      => { // console.log(data);
+      document.querySelector('.user-reviews').innerText = "";
+      data.reviews.forEach(r => { let li = document.createElement('li');
+      li.innerText = r.details;
+      document.querySelector('.user-reviews').appendChild(li); }); })
+      document.querySelector(".review-section-details").classList.toggle('hide');
+      })
     </script>
-    
-</body>
+
+  </body>
 </html>

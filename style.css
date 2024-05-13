@@ -25,7 +25,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("KISAN_KART.png");
+  background-image: url('KISAN_KART.png');
 }
 .uppercontent {
   box-sizing: border-box;
@@ -198,7 +198,7 @@ a {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  background-image: url("banner1.png");
+  background-image: url('banner1.png');
   background-size: cover;
   justify-content: space-between;
   transition: background-image 1.5s ease;
@@ -326,7 +326,7 @@ html {
   font-size: 1.4vw;
   height: 10%;
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -338,7 +338,7 @@ html {
 }
 .box7 {
   height: 4.5vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
 .lastdiv {

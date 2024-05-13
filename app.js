@@ -1,62 +1,65 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-const PORT = 3000;
-const path = require("path");
-const hbs = require("hbs");
-const users = require("./models/kisan");
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
+const PORT = 3000
+const path = require('path')
+const hbs = require('hbs')
+const users = require('./models/kisan')
+const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
-app.use(express.static(path.dirname("index.html")));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set("view engine", "hbs");
+// app.use(express.static(path.dirname('index.hbs')))
+app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.set('view engine', 'hbs')
 app.use(
-  require("express-session")({
-    secret: "keyboard dog",
+  require('express-session')({
+    secret: 'keyboard dog',
     resave: true,
     saveUninitialized: true,
-  })
-);
-const passport = require("passport");
-app.use(passport.initialize());
-app.use(passport.session());
+  }),
+)
+const passport = require('passport')
+app.use(passport.initialize())
+app.use(passport.session())
+app.get('/', (res, req) => {
+  req.render('index')
+})
 // require("./authentication/passport");
 app.use(async (req, res, next) => {
   try {
-    let user = await users.findOne({ name: "tanushk nirmal" });
-    req.user = user;
-    console.log(req.user);
-    next();
+    let user = await users.findOne({ name: 'tanushk nirmal' })
+    req.user = user
+    console.log(req.user)
+    next()
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 app.use(
-  require("express-session")({
-    secret: "keyboard dog",
+  require('express-session')({
+    secret: 'keyboard dog',
     resave: true,
     saveUninitialized: true,
-  })
-);
-const userRouter = require("./routes/user");
-hbs.registerPartials(__dirname + "/views/partials");
-const adminRouter = require("./routes/admin");
+  }),
+)
+const userRouter = require('./routes/user')
+hbs.registerPartials(__dirname + '/views/partials')
+const adminRouter = require('./routes/admin')
 
-app.use("/user", userRouter);
-app.use("/admin", adminRouter);
+app.use('/user', userRouter)
+app.use('/admin', adminRouter)
 
 /*app.get("/", (req, res) => {
   const { name } = req.query;
   res.send(`Hey mofo ${name}`);
 });*/
 
-app.post("/register", async (req, res) => {
-  const { pswd, name, phone, Email, city, country, u, a } = req.body;
-  let ar = [name, pswd, phone, Email, city, country];
+app.post('/register', async (req, res) => {
+  const { pswd, name, phone, Email, city, country, u, a } = req.body
+  let ar = [name, pswd, phone, Email, city, country]
   // res.send(pswd);
-  res.render("index", { data: ar });
+  res.render('index', { data: ar })
   // if (u) {
   //   console.log("Registered as a user");
   // } else if (a) {
@@ -70,36 +73,36 @@ app.post("/register", async (req, res) => {
     Email,
     city,
     country,
-  });
-  let f = await users.find({});
-  console.log(f);
-});
+  })
+  let f = await users.find({})
+  console.log(f)
+})
 /*app.get("/abt", (req, res) => {
   res.send("Hey mofo");
 }); */
 
-app.post("/login", async (req, res) => {
-  const { password, email } = req.body;
+app.post('/login', async (req, res) => {
+  const { password, email } = req.body
   try {
-    let user = await users.findOne({ Email: email });
+    let user = await users.findOne({ Email: email })
     if (!user) {
-      return res.send("/?error=User not found");
+      return res.send('/?error=User not found')
     }
     if (await bcrypt.compare(password, user.pswd)) {
-      res.send("logged in");
+      res.send('logged in')
     } else {
-      res.send("wrong Details Entered");
+      res.send('wrong Details Entered')
     }
-    console.log("email:", email);
-    console.log("Password:", password);
-    console.log("User Password (Hashed):", user.pswd);
+    console.log('email:', email)
+    console.log('Password:', password)
+    console.log('User Password (Hashed):', user.pswd)
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
-});
+})
 
-mongoose.connect("mongodb://127.0.0.1:27017/KisanCart").then(() => {
+mongoose.connect('mongodb://127.0.0.1:27017/KisanCart').then(() => {
   app.listen(PORT, () => {
-    console.log(`Server is running on port : ${PORT}`);
-  });
-});
+    console.log(`Server is running on port : ${PORT}`)
+  })
+})

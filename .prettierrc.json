@@ -1,0 +1,13 @@
+{
+  "semi": false,
+  "useTabs": false,
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "htmlWhitespaceSensitivity": "strict",
+  "css": {
+    "separateBlocks": true
+  },
+  "embeddedLanguageFormatting": "auto"
+}

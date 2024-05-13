@@ -1,364 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<link
+			rel='stylesheet'
+			href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+		/>
+		<link rel='preconnect' href='https://fonts.googleapis.com' />
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+		<link
+			href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap'
+			rel='stylesheet'
+		/>
 
+		<link
+			href='https://fonts.googleapis.com/icon?family=Material+Icons+Outlined'
+			rel='stylesheet'
+		/>
+		<link
+			rel='stylesheet'
+			href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+			integrity='sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=='
+			crossorigin='anonymous'
+			referrerpolicy='no-referrer'
+		/>
+		<style>
+			* { margin: 0; } .navbar { margin-left: 0px; width: 100%; height: 13vh;
+			background-color: lightgreen; display: flex; align-items: center;
+			justify-content: center; box-sizing: border-box; padding: 1vh;
+			padding-top: 0; padding-bottom: 0; font-size: 20px; margin-bottom: 20px; }
+			.navbar a { padding: 2vw; text-decoration: none; color: black; } li {
+			list-style-type: none; } .endpage { height: 40vh; background-color:
+			#018749; display: flex; padding-top: 3%; justify-content: center;
+			flex-direction: column; justify-content: space-between; } .boxes {
+			display: flex; justify-content: space-evenly; } .box6 { width: 15%; /*
+			border: 1px solid black; */ margin: 1vw; } .headtext { font-size: 1.4vw;
+			height: 10%; text-align: center; font-family: "Segoe UI", Tahoma, Geneva,
+			Verdana, sans-serif; font-weight: bold; margin-bottom: 20px; }
+			.endcontentbox { border-top: 1px solid black; line-height: -2px;
+			box-sizing: border-box; margin: 0.2vw; } .box7 { height: 4.5vh;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; text-align:
+			center; } .lastdiv { height: 10vh; width: 100%; display: flex;
+			align-items: center; background-color: #1f1f1f; justify-content:
+			space-between; } .socials { color: white; padding-left: 3vw; } .platforms
+			{ display: flex; justify-content: space-evenly; width: 20%; } .fa-brands {
+			font-size: 5vh; } .space { height: 15vh; } body{ background-color:
+			rgb(245, 245, 245); } h1 { font-family: 'Montserrat'; text-align: center;
+			margin-top: 3.5%; margin-bottom: 3%; font-size: 43px; } .main { display:
+			flex; align-items: center; justify-content: space-between; width: 80% }
+			img { height: 20vw; width: 20vw; border: solid 3px; border-radius: 50%;
+			margin-right: 30px; } .subDetails { line-height: 2; font-weight: bolder;
+			font-size: 1.6em; font-family: 'Roboto Slab'; width: 100%; overflow-wrap:
+			break-word; } .button-container { display: flex; align-items: center;
+			justify-content: space-evenly; margin-top: 5vh; padding:2vh 3vw; } .button
+			{ height: 8vh; width: 20vw; font-size: 1.3rem; font-weight: bold;
+			border-radius: 10px; color: black; background-color: white; }
+			.button:hover{ font-size:1.6rem; color: black; background-color:
+			lightgreen; transition: 200ms; } a{ text-decoration: none; color:black }
+			body { margin: 0px; padding: 0px; background-image:
+			url(https://i.imghippo.com/files/gTq3d1715281830.jpg); background-repeat:
+			no-repeat; background-size: cover; } .right{ margin-top: 5vh; width: 50vw;
+			} .centerpage{ display: flex; } #sidebar { grid-area: sidebar; height:
+			100%; background-color: #263043; overflow-y: auto; transition: all 0.5s;
+			-webkit-transition: all 0.5s; width: 15vw; padding-top: 3vh; line-height:
+			2; box-sizing: border-box; } .sidebar-title { display: flex;
+			justify-content: space-between; align-items: center; padding: 30px 30px
+			30px 30px; margin-bottom: 30px; } .sidebar-title>span { display: none; }
+			.sidebar-brand { margin-top: 15px; font-size: 20px; font-weight: 700; }
+			.sidebar-list { padding: 0; margin-top: 15px; list-style-type: none; }
+			.sidebar-list-item { padding: 20px 20px 20px 20px; font-size: 18px; }
+			.sidebar-list-item:hover { background-color: rgba(255, 255, 255, 0.2);
+			cursor: pointer; } .sidebar-list-item>a { text-decoration: none; color:
+			#9e9ea4; } .sidebar-responsive { display: inline !important; position:
+			absolute; /* the z-index of the ApexCharts is 11 we want the z-index of
+			the sidebar higher so that the charts are not showing over the sidebar on
+			small screens */ z-index: 12 !important; } .grid-container { display:
+			grid; grid-template-columns: 260px 1fr 1fr 1fr; grid-template-rows: 0.2fr
+			3fr; grid-template-areas: 'sidebar header header header' 'sidebar main
+			main main'; height: 100vh; } .content{ display: flex; flex-direction:
+			column; align-items: center; }
+		</style>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            * {
-                margin: 0;
-            }
+		<title>Document</title>
+	</head>
 
-            .navbar {
-                margin-left: 0px;
-                width: 100%;
-                height: 13vh;
-                background-color: lightgreen;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-sizing: border-box;
-                padding: 1vh;
-                padding-top: 0;
-                padding-bottom: 0;
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
+	<body>
+		<div class='centerpage'>
 
-            .navbar a {
-                padding: 2vw;
-                text-decoration: none;
-                color: black;
-            }
+			<div class='content'><h1>PRODUCT DETAILS</h1><br />
+                 {{>sidebar}}
+				<div class='main'>
+					<div class='left'>
+						<img height='' src={{product.imageUrl}} />
+					</div>
+					<div class='right'>
+						<div class='subDetails'>Name : {{product.name}} </div>
+						<div class='subDetails'>Description : {{product.description}}</div>
+						<div class='subDetails'>Price : {{product.price}}</div>
+						<div class='subDetails'>Seller : {{product.seller}}</div>
+						<div class='subDetails'>Date : {{product.date}}</div>
+						<div class='button-container'>
+							<a href='updateproduct/{{product._id}}'><button
+									class='button'
+								>Update</button></a>
+							<a href='deleteproduct/{{product._id}}'><button
+									class='button'
+								>Delete</button></a>
+						</div>
+					</div>
+				</div></div>
+		</div>
 
-            li {
-                list-style-type: none;
-            }
-
-
-            .endpage {
-                height: 40vh;
-                background-color: #018749;
-                display: flex;
-                padding-top: 3%;
-                justify-content: center;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-
-            .boxes {
-                display: flex;
-                justify-content: space-evenly;
-            }
-
-            .box6 {
-                width: 15%;
-                /* border: 1px solid black; */
-                margin: 1vw;
-            }
-
-            .headtext {
-                font-size: 1.4vw;
-                height: 10%;
-                text-align: center;
-                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-
-            .endcontentbox {
-                border-top: 1px solid black;
-                line-height: -2px;
-                box-sizing: border-box;
-                margin: 0.2vw;
-            }
-
-            .box7 {
-                height: 4.5vh;
-                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                text-align: center;
-            }
-
-            .lastdiv {
-                height: 10vh;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                background-color: #1f1f1f;
-                justify-content: space-between;
-            }
-
-            .socials {
-                color: white;
-                padding-left: 3vw;
-            }
-
-            .platforms {
-                display: flex;
-                justify-content: space-evenly;
-                width: 20%;
-            }
-
-            .fa-brands {
-                font-size: 5vh;
-            }
-
-            .space {
-                height: 15vh;
-            }
-            body{
-                background-color: rgb(245, 245, 245);              
-            }
-            h1 {
-                font-family: 'Montserrat';
-                text-align: center;
-                margin-top: 3.5%;
-                margin-bottom: 3%;
-                font-size: 43px;
-            }
-
-            .main {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 80%
-                
-            }
-
-            img {
-                height: 20vw;
-            width: 20vw;
-            border: solid 3px;
-            border-radius: 50%;
-            margin-right: 30px;
-            }
-
-            .subDetails {
-                line-height: 2;
-                font-weight: bolder;
-                font-size: 1.6em;
-                font-family: 'Roboto Slab';
-            }
-
-            .button-container {
-                display: flex;
-                align-items: center;
-                justify-content: space-evenly;
-                margin-top: 5vh;
-                padding:2vh 3vw;
-            }
-
-            .button {
-                height: 8vh;
-                width: 20vw;
-                font-size: 1.3rem;
-                font-weight: bold;
-                border-radius: 10px;
-                color: black;
-                background-color: white;
-            }
-            .button:hover{
-                font-size:1.6rem;
-                color: black;
-                background-color: lightgreen;
-                transition: 200ms;
-            }
-            a{
-                text-decoration: none;
-                color:black
-            }
-            body {
-      margin: 0px;
-      padding: 0px;
-      background-image: url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    .right{
-        margin-top: 5vh;
-    }
-    .centerpage{
-        display: flex;
-    }
-
-    #sidebar {
-      grid-area: sidebar;
-      height: 100%;
-      background-color: #263043;
-      overflow-y: auto;
-      transition: all 0.5s;
-      -webkit-transition: all 0.5s;
-      width: 15vw;
-      padding-top: 3vh;
-      line-height: 2;
-      box-sizing: border-box;
-    }
-
-    .sidebar-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 30px 30px 30px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar-title>span {
-      display: none;
-    }
-
-    .sidebar-brand {
-      margin-top: 15px;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .sidebar-list {
-      padding: 0;
-      margin-top: 15px;
-      list-style-type: none;
-    }
-
-    .sidebar-list-item {
-      padding: 20px 20px 20px 20px;
-      font-size: 18px;
-    }
-
-    .sidebar-list-item:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-    }
-
-    .sidebar-list-item>a {
-      text-decoration: none;
-      color: #9e9ea4;
-    }
-
-    .sidebar-responsive {
-      display: inline !important;
-      position: absolute;
-      /*
-      the z-index of the ApexCharts is 11
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
-      z-index: 12 !important;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: 260px 1fr 1fr 1fr;
-      grid-template-rows: 0.2fr 3fr;
-      grid-template-areas:
-        'sidebar header header header'
-        'sidebar main main main';
-      height: 100vh;
-    } 
-    .content{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-        </style>
-
-        <title>Document</title>
-    </head>
-
-    <body>
-    <div class="centerpage">
-         {{>sidebar}}
-        <div class="content"><h1>PRODUCT DETAILS</h1><br>
-
-        <div class="main">
-            <div class="left">
-                <img height="" src={{product.imageUrl}}></img>
-            </div>
-            <div class="right">
-                <div class="subDetails">Name  :  {{product.name}} </div>
-                <div class="subDetails">Description  :  {{product.description}}</div>
-                <div class="subDetails">Price  :  {{product.price}}</div>
-                <div class="subDetails">Seller  :   {{product.seller}}</div>
-                <div class="subDetails">Date  :  {{product.date}}</div>
-                <div class="button-container">
-                    <a href="updateproduct/{{product._id}}"><button class="button">Update</button></a>
-                   <a href="deleteproduct/{{product._id}}"><button class="button">Delete</button></a>
-                </div>
-            </div>
-        </div></div>
-    </div>
-
-        <div class="endpage">
-            <div class="boxes">
-                <div class="box6">
-                    <div class="headtext border">about us</div>
-                    <div class="endcontentbox">
-                        <a href="">
-                            <div class="box7 border">contact us</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="box6">
-                    <div class="headtext border">about us</div>
-                    <div class="endcontentbox">
-                        <a href="">
-                            <div class="box7 border">contact us</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="box6">
-                    <div class="headtext border">about us</div>
-                    <div class="endcontentbox">
-                        <a href="">
-                            <div class="box7 border">contact us</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="box6">
-                    <div class="headtext border">about us</div>
-                    <div class="endcontentbox">
-                        <a href="">
-                            <div class="box7 border">contact us</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="box6">
-                    <div class="headtext border">about us</div>
-                    <div class="endcontentbox">
-                        <a href="">
-                            <div class="box7 border">contact us</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="lastdiv border">
-                <div class="socials">
-                    Visit our socials or get in touch via phone or email.
-                </div>
-                <div class="platforms">
-                    <div class="insta">
-                        <a href=""><i class="fa-brands fa-instagram" style="color: #e26060"></i></a>
-                    </div>
-                    <div class="facebook">
-                        <a href=""><i class="fa-brands fa-square-facebook" style="color: #0f72bd"></i></a>
-                    </div>
-                    <div class="twitter">
-                        <a href=""><i class="fa-brands fa-x-twitter" style="color: #74c0fc"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+		<div class='endpage'>
+			<div class='boxes'>
+				<div class='box6'>
+					<div class='headtext border'>about us</div>
+					<div class='endcontentbox'>
+						<a href=''>
+							<div class='box7 border'>contact us</div>
+						</a>
+					</div>
+				</div>
+				<div class='box6'>
+					<div class='headtext border'>about us</div>
+					<div class='endcontentbox'>
+						<a href=''>
+							<div class='box7 border'>contact us</div>
+						</a>
+					</div>
+				</div>
+				<div class='box6'>
+					<div class='headtext border'>about us</div>
+					<div class='endcontentbox'>
+						<a href=''>
+							<div class='box7 border'>contact us</div>
+						</a>
+					</div>
+				</div>
+				<div class='box6'>
+					<div class='headtext border'>about us</div>
+					<div class='endcontentbox'>
+						<a href=''>
+							<div class='box7 border'>contact us</div>
+						</a>
+					</div>
+				</div>
+				<div class='box6'>
+					<div class='headtext border'>about us</div>
+					<div class='endcontentbox'>
+						<a href=''>
+							<div class='box7 border'>contact us</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class='lastdiv border'>
+				<div class='socials'>
+					Visit our socials or get in touch via phone or email.
+				</div>
+				<div class='platforms'>
+					<div class='insta'>
+						<a href=''><i
+								class='fa-brands fa-instagram'
+								style='color: #e26060'
+							></i></a>
+					</div>
+					<div class='facebook'>
+						<a href=''><i
+								class='fa-brands fa-square-facebook'
+								style='color: #0f72bd'
+							></i></a>
+					</div>
+					<div class='twitter'>
+						<a href=''><i
+								class='fa-brands fa-x-twitter'
+								style='color: #74c0fc'
+							></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 
 </html>
