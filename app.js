@@ -6,11 +6,12 @@ const path = require('path')
 const hbs = require('hbs')
 const users = require('./models/kisan')
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+require('dotenv').config()
 
-// app.use(express.static(path.dirname('index.hbs')))
+//app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
 app.set('view engine', 'hbs')
 app.use(
   require('express-session')({
@@ -22,31 +23,67 @@ app.use(
 const passport = require('passport')
 app.use(passport.initialize())
 app.use(passport.session())
-app.get('/', (res, req) => {
-  req.render('index')
-})
-// require("./authentication/passport");
+// require('./authentication/passport')
 app.use(async (req, res, next) => {
   try {
-    let user = await users.findOne({ name: 'tanushk nirmal' })
+    let user = await users.findOne({ name: 'Satvik Bajaj' })
     req.user = user
-    console.log(req.user)
     next()
   } catch (err) {
     next(err)
   }
 })
-app.use(
-  require('express-session')({
-    secret: 'keyboard dog',
-    resave: true,
-    saveUninitialized: true,
-  }),
+
+const homerouter = require('./routes/home')
+
+app.get('/user/login', (req, res, next) => {
+  res.render('login')
+})
+app.use(express.static(__dirname))
+app.post(
+  '/user/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/user/products/all')
+  },
 )
+
+// app.get('/logout',function(req,res,next){
+//   req.logout(function(err){
+//     if(err){return next(err)}
+//     res.redirect('/auth/google')
+//   })
+// })
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
+
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/auth/google' }),
+  function (req, res) {
+    res.redirect('/user/products/all')
+  },
+)
+
+app.get('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err)
+    }
+
+    res.redirect('/auth/google')
+  })
+})
+
+// app.get('/google/logout',(req,res)=>{
+
+// })
+
 const userRouter = require('./routes/user')
 hbs.registerPartials(__dirname + '/views/partials')
 const adminRouter = require('./routes/admin')
 
+app.use('/', homerouter)
 app.use('/user', userRouter)
 app.use('/admin', adminRouter)
 
@@ -55,11 +92,11 @@ app.use('/admin', adminRouter)
   res.send(`Hey mofo ${name}`);
 });*/
 
-app.post('/register', async (req, res) => {
-  const { pswd, name, phone, Email, city, country, u, a } = req.body
-  let ar = [name, pswd, phone, Email, city, country]
+/*app.post("/register", async (req, res) => {
+  const { pswd, name, phone, Email, city, country, u, a } = req.body;
+  let ar = [name, pswd, phone, Email, city, country];
   // res.send(pswd);
-  res.render('index', { data: ar })
+  res.render("index", { data: ar });
   // if (u) {
   //   console.log("Registered as a user");
   // } else if (a) {
@@ -73,36 +110,36 @@ app.post('/register', async (req, res) => {
     Email,
     city,
     country,
-  })
-  let f = await users.find({})
-  console.log(f)
-})
+  });
+  let f = await users.find({});
+  console.log(f);
+});
 /*app.get("/abt", (req, res) => {
   res.send("Hey mofo");
 }); */
 
-app.post('/login', async (req, res) => {
-  const { password, email } = req.body
+/*app.post("/login", async (req, res) => {
+  const { password, email } = req.body;
   try {
-    let user = await users.findOne({ Email: email })
+    let user = await users.findOne({ Email: email });
     if (!user) {
-      return res.send('/?error=User not found')
+      return res.send("/?error=User not found");
     }
     if (await bcrypt.compare(password, user.pswd)) {
-      res.send('logged in')
+      res.send("logged in");
     } else {
-      res.send('wrong Details Entered')
+      res.send("wrong Details Entered");
     }
-    console.log('email:', email)
-    console.log('Password:', password)
-    console.log('User Password (Hashed):', user.pswd)
+    console.log("email:", email);
+    console.log("Password:", password);
+    console.log("User Password (Hashed):", user.pswd);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-})
+});*/
 
 mongoose.connect('mongodb://127.0.0.1:27017/KisanCart').then(() => {
   app.listen(PORT, () => {
-    console.log(`Server is running on port : ${PORT}`)
+    console.log(`https ${PORT}`)
   })
 })

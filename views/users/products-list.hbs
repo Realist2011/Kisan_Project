@@ -1,58 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Document</title>
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
     />
-        <style>
-            * {
-                margin: 0;
-            }
+    <style>
+      * { margin: 0; } .navbar { margin-left: 0px; width: 100%; height: 12vh;
+      background-color: lightgreen; display: flex; align-items: center;
+      justify-content: center; box-sizing: border-box; padding: 1vh;
+      padding-top: 0; padding-bottom: 0; font-size: 20px; margin-bottom: 20px; }
+      .navbar a { padding: 2vw; } ul { list-style-type: none; } li{ font-size:
+      20px; padding-bottom: 20px; font-weight: 600; }
 
-            .navbar {
-                margin-left: 0px;
-                width: 100%;
-                height: 16vh;
-                background-color: lightgreen;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-sizing: border-box;
-                padding: 1vh;
-                padding-top: 0;
-                padding-bottom: 0;
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .navbar a {
-                padding: 2vw;
-            }
-
-            ul {
-                list-style-type: none;
-            }
-            li{
-                font-size: 20px;
-                padding-bottom: 20px;
-                font-weight: 600;
-            }
-
-        </style>
-        <style>
+    </style>
+    <style>
       @import
       url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-      * { margin: 0; padding: 0; } 
-        body { font-family: 'Anek Devanagari',
-      sans-serif; }
-       .navbar { width: 100%; height: 12vh; background-color:
-      lightgreen; display: flex; align-items: center; justify-content: center;
-      box-sizing: border-box; padding: 1vh; padding-top: 0; padding-bottom: 0; }
+      * { margin: 0; padding: 0; } body { background-color: white; font-family: 'Anek Devanagari',
+      sans-serif; } 
       .bordr { border: 2px solid black; } .kklogo { height: 18vh; width: 8vw;
       background-size: contain; background-repeat: no-repeat;
       background-position: center; background-image: url("KISAN_KART.png"); }
@@ -88,44 +57,28 @@
       25px; } background-color: #e9e7e760; box-shadow: 2px 2px 4px gray;
       border-radius: 20px; display: inline-block; } .product_card:hover {
       filter: drop-shadow(2px 2px 10px rgba(128, 128, 128, 0.188)) }
-      .pdescription { overflow-x: hidden; font-size: larger; height: 200px; width: 250px; margin:
-      0px 25px 25px 25px; line-height: 24px; h4 { color: green; } } #price {}
-      #pd { color: gray; } #heading { font-size: 44px; margin-top: 30px;
-      margin-bottom: 25px; text-align: center; color: rgb(4, 95, 4);
-      font-weight: bold; } .product { display: flex; flex-wrap: wrap;
-      justify-content: space-evenly; align-items: } 
+      .pdescription { overflow: hidden; 
+       margin: 0px 25px 25px 25px; line-height: 20px; h4 { color:
+      green; } } #price {} #pd { color: gray; } #heading { font-size: 44px;
+      margin-top: 30px; margin-bottom: 25px; text-align: center; color: rgb(4,
+      95, 4); font-weight: bold; } .product { display: flex; flex-wrap: wrap;
+      justify-content: space-evenly; align-items: }
     </style>
     <style>
-      #overlay{
-        margin: auto;
-        position: fixed;
-        top: 80px; left: 50px;
-        bottom: 50px; right: 50px;
-        z-index:5;
-        display: none;
-        width: 80%;
-        padding:20px;
-        transition: 1000ms ease-in-out;
-        border: 1px solid black;
-        border-radius: 20px;
-        box-shadow: 0px 2px 5px 5px rgba(0,0,0,0.1);
-      }
-      .close{
-        position: fixed;
-        right:13vw;
-        top:18vh;
-        z-index: 10;
-        border: none;       
-        background-color: transparent;
-      }
+      #overlay{ margin: auto; position: fixed; top: 80px; left: 50px; bottom:
+      50px; right: 50px; z-index:5; display: none; width: 80%; padding:20px;
+      transition: 1000ms ease-in-out; border: 1px solid black; border-radius:
+      20px; box-shadow: 0px 2px 5px 5px rgba(0,0,0,0.1); overflow: hidden; }
+      .close{ position: fixed; right:13vw; top:18vh; z-index: 10; border: none;
+      background-color: transparent; font-size: 2rem; }
     </style>
-    
-    </head>
 
-    <body>
-        {{>navbar}}
+  </head>
 
-        {{!-- <ul>
+  <body>
+    {{>navbar}}
+
+    {{!-- <ul>
             {{#each products as |p|}}
             <li>
                 <img height="150px" src="{{p.imageUrl}}"><br>
@@ -140,26 +93,29 @@
             </li>
             {{/each}}
         </ul> --}}
-         
-        <div class="product">
+
+    <div class='product'>
       {{#each products as |p|}}
+        {{!-- <a href="/user/products/{{p._id}}"> --}}
+        <button
+          class='load'
+          style='background-color: transparent;border:none'
+          onclick='load(`{{p._id}}`)'
+        >
+          <div class='product_card' data-aos='fade-up'>
+            <img src='{{p.imageUrl}}' data-aos='zoom-in' /><br />
+            <div class='pdescription'>
+              <h2>
+                {{p.name}}
+              </h2>
 
-        
-            <button class="load" style="background-color: transparent;border:none" 
-            onclick="load(`{{p._id}}`)"><div class="product_card" data-aos="fade-up">
-          <img src="{{p.imageUrl}}" data-aos="zoom-in" /><br />
-          <div class="pdescription">
-            <h2>
-              {{p.name}}
-            </h2>
+              <span id='pd'>{{p.description}}</span><br />
+              <span id='price'>&#8377;
+                {{p.price}}
 
-            <span id="pd">{{p.description}}</span><br />
-            <span id="price">&#8377;
-              {{p.price}}
-
-            </span><br />
-            <h4>40% OFF</h4>
-            {{!-- {{#if p.reviews}}
+              </span><br />
+              <h4>40% OFF</h4>
+              {{!-- {{#if p.reviews}}
               <h5>Reviews</h5>
               <ul>
                 {{#each p.reviews as |r|}}
@@ -167,55 +123,52 @@
                 {{/each}}
               </ul>
             {{/if}} --}}
-            <div class="addtocart" style="font-weight: bold;"><a href="/user/cart/add/{{p._id}}">Add to Cart</a></div>
+              <div class='addtocart' style='font-weight: bold;'><a
+                  href='/user/cart/add/{{p._id}}'
+                >Add to Cart</a></div>
+              
+              <div class='getinfo' style='font-weight: bold;'><a
+                  href='/user/products/{{p._id}}'
+                >Get Info</a></div>
+            </div>
           </div>
-        </div></button>
+          </button>
       {{/each}}
-        
+
     </div>
-    <button class="close" onclick="close()"><i class="fa-regular fa-circle-xmark" style="color: #63E6BE;"></i></button>
-    <div id="overlay"></div>
+    <button class='close' onclick='close()'><i
+        class='fa-regular fa-circle-xmark'
+        style='color: #63E6BE;'
+      ></i></button>
+    <div id='overlay'></div>
     <script>
-        function load(productid){
-        fetch(`/user/products/${productid}`)
-        .then(res=>res.text())
-        .then(html =>{
-          document.getElementById('overlay').style.display='block'
-          document.getElementById('overlay').innerHTML=html;
-          
-          document.querySelector('.close').style.display='block';
-          document.querySelectorAll('.load').forEach(Element=>{
-                      Element.disabled=true;
-          });
-          
-        })
-        .catch(Error=> console.log("error"))
-        
+      function load(productid){ fetch(`/user/products/${productid}`)
+      .then(res=>res.text()) .then(html =>{
+      document.getElementById('overlay').style.display='block'
+      document.getElementById('overlay').innerHTML=html;
+      document.querySelector('.navbarrr').style.display='none'
+      document.querySelector('.close').style.display='block';
+      document.querySelectorAll('.load').forEach(Element=>{
+      Element.disabled=true; }); 
+      document.body.style.backgroundColor='white';}) .catch(Error=> console.log("error")) 
       }
-      function close(){
-          console.log("pressed")
-          document.getElementById('overlay').style.display='none'
-          
+      function close(){ console.log("pressed")
+      document.getElementById('overlay').style.display='none'
       document.querySelector('.close').style.display='none';
       document.querySelectorAll('.load').forEach(Element=>{
-                      Element.disabled=false;
-
-          });
-      }
+      Element.disabled=false; }); }
       document.querySelector('.close').addEventListener('click',close);
-      
       document.querySelector('.close').style.display='none';
     </script>
-    </body>
-     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script>
-      AOS.init({ offset: 200, Duration: 1000 })
-    </script>
-    
+  </body>
+  <script
+    src='https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js'
+    integrity='sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=='
+    crossorigin='anonymous'
+    referrerpolicy='no-referrer'
+  ></script>
+  <script>
+    AOS.init({ offset: 200, Duration: 1000 })
+  </script>
 
 </html>
