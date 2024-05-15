@@ -15,6 +15,7 @@ function changeslide(bool) {
   banner.style.backgroundImage = `url(${images[index]})`
   console.log(index)
   clearInterval(intervalid)
+  // changeslideauto()
 }
 let nextslide = document.getElementById('next_banner')
 let prevslide = document.getElementById('previous_banner')
