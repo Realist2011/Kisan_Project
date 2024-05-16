@@ -99,6 +99,10 @@ module.exports.getCartDecrease = async (req, res, next) => {
       console.log(item.prodid._id)
       if (item.prodid._id == id) {
         item.quantity--
+        if (item.quantity <= 0) {
+          // Remove the item from the cart if quantity becomes zero or less
+          carts.cartitems.pull(item._id)
+        }
       }
       totalPrice += item.prodid.price * item.quantity
     })

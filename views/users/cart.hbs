@@ -148,7 +148,7 @@
 
     <script >
         let items = document.querySelector('.cartItems')
-items.addEventListener('click',(ev)=>{
+    items.addEventListener('click',(ev)=>{
     if( ev.target.classList.contains('decrease')){
         let id = ev.target.parentElement.nextElementSibling.getAttribute('id')
         axios.get(`/user/cart/decrease?id=${id}`).then(({data})=>{
@@ -170,6 +170,9 @@ items.addEventListener('click',(ev)=>{
                                 <div style="display: none;" id="${p.prodid._id}"></div>
             `
                 items.appendChild(li);
+                if(p.quantity==0){
+                    li.remove()
+                }
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
             });
         }).catch(err => {
