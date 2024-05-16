@@ -36,13 +36,26 @@ module.exports.getAddtoCartById = async (req, res, next) => {
     const cart_obj = await cart.findOne({
       userid: req.user._id,
     })
-    cart_obj.cartitems.push({
-      prodid: pid,
-      quantity: 1,
+    let c = 0
+    cart_obj.cartitems.forEach((item) => {
+      if (item.prodid == pid) {
+        item.quantity += 1
+        cart_obj.save()
+        c = 1
+      }
     })
-    cart_obj.save()
-    console.log(cart_obj)
-    res.redirect('/user/cart/show')
+    if(c==1){
+      res.redirect('/user/cart/show')
+    }
+    if (c != 1) {
+      cart_obj.cartitems.push({
+        prodid: pid,
+        quantity: 1,
+      })
+      cart_obj.save()
+      console.log(cart_obj)
+      res.redirect('/user/cart/show')
+    }
   } catch (err) {
     next(err)
   }

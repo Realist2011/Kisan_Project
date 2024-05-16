@@ -1,27 +1,59 @@
-<nav class="navbar">
-  <a href="/">Home</a>
-  {{! <a href="/user/products/all">User Products</a> }}
-  <a href="#">
-    <input
-      type="text"
-      name="searchbar"
-      id="searchbar"
-      placeholder="Enter product to search"
-    />
-  </a>
-  <a href="#">
-    <span class="login">Login</span>
-  </a>
-  <a href="/user/cart/show">
-    <span class="cart">Cart</span>
-    {{#if cartQuantity}}
-      <button class="cartQuantity">{{cartQuantity}}</button>
-    {{/if}}
-  </a>
-  <a href="/admin">
-    <span class="admin">Admin Page</span>
-  </a>
-  <a href="/admin/products/all">
-    <span class="">All Admin Products</span>
-  </a>
-</nav>
+<div class="navbar border">
+      <a href=""><div class="kklogo"></div></a>
+      <div class="navcontent">
+        <div class="uppercontent border">
+          <a href="">
+            {{!-- <div class="location size1 border">
+              <div class="loclogo border">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="currentlocation">
+                <div class="currentLocationtext" style="font-size: 0.9rem">
+                  Deliver to Aryan
+                </div>
+                <div class="currentlocationlive" style="font-size: 1.2rem;font-weight:bold;">
+                  New Delhi 110089
+                </div>
+              </div>
+            </div> --}}
+          </a>
+          <div class="searchbar border " >
+            <form action="" class="searchbar">
+              <input
+                type="text"
+                placeholder="Search..."
+                id="searchInput"
+                style="border: none; outline: none; text-indent: 15px"
+              />
+              <a href="">
+                <button class="searchbutton">
+                  <i class="fa-solid fa-magnifying-glass icon" style="font-size: 1.65vw"></i>
+                </button>
+              </a>
+            </form>
+          </div>
+          
+         
+           
+          
+          <div class="logo size2 border">
+            <a href="/admin"
+              ><div class="logodiv border">
+                <i class="fa-solid fa-shop" style="font-size: 1.65vw"></i></div
+            >
+            <div class="logotext border" style="padding-right:5px;">Admin</div></a>
+          </div>
+           <div class="logo size2 border">
+            <a href="login.html"
+              ><div class="logodiv border userlogo">
+                
+                  <i class="fa-solid fa-user" style="font-size: 1.65vw"></i>
+                </div>
+                <div class="logotext border">Logout</div></a
+            >
+              </div>
+          
+        </div>
+       
+      </div>
+    </div>

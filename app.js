@@ -6,6 +6,7 @@ const path = require('path')
 const hbs = require('hbs')
 const users = require('./models/kisan')
 const mongoose = require('mongoose')
+const products=require('./models/products')
 require('dotenv').config()
 
 //app.use(express.static(path.join(__dirname, "public")));
@@ -137,7 +138,13 @@ app.use('/admin', adminRouter)
     console.log(e);
   }
 });*/
-
+app.post('/search/product',async(req,res)=>{
+  const {search} = req.body;
+  const prod= await products.find({
+    category:search
+  })
+  res.render('users/products-list',{products:prod})
+})
 mongoose.connect('mongodb://127.0.0.1:27017/KisanCart').then(() => {
   app.listen(PORT, () => {
     console.log(`https ${PORT}`)

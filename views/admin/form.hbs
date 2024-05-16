@@ -8,9 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
+       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="../../public/sidebar.css">
   <style>
-    *{ font-family:monospace; } body{  background-image:
+    .content{ font-family:monospace; }
+    #sidebar{
+      font-family: 'Montserrat', sans-serif;
+      width: 260px;
+    }
+     body{  background-image:
     url("https://img.freepik.com/premium-photo/fresh-healthy-vegetable-fruits-seen-from-isolated-green-background-with-copy-space_709963-1630.jpg");
     background-size: cover; background-repeat: no-repeat;
     background-position:right ;} form{
@@ -22,7 +33,7 @@
     justify-content: space-evenly; padding-top: 1.5%;}
     .inp{ width: 50%; height: 5vh; } .sub{ width: 10vw; height: 10vh; position:
     relative; left: 70%;  border-radius:
-    15px; } .d{ height: 10vh; } .content{width: 100%; height: 100%; display: flex; flex-direction: column;margin-left: 5%; justify-content: space-evenly;} h1{
+    15px; } .d{ height: 10vh; } .content{width: 73%; height: 100%; display: flex; flex-direction: column;margin-left: 5%; justify-content: space-evenly;} h1{
       font-size: 3rem;
     }
     h2{
@@ -49,16 +60,42 @@
           <p>Price</p><input class="inp" type="number" name="price" />
           <p>Seller Name</p><input class="inp" type="text" name="seller" />
           <p>Image Url</p><input class="inp" type="text" name="imageUrl" />
-          <p>Description</p><input class="inp" type="text" name="description" />
-          <p>Category</p><textarea
-            class="inp d"
+          <p>Description</p><textarea class="inp d" type="text" name="description" ></textarea>
+          <p>Category</p><input
+            class="inp "
+            type="text"
             name="category"
-            rows="5"
-            cols="50"
-          ></textarea>
+            
+          />
           <button class="sub" type="submit">Submit form</button>
         </div>
       </form></div>
+      
+       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    
+    <script>
+        // SIDEBAR TOGGLE
+
+let sidebarOpen = false;
+const sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
+
+
+    </script>
 
   </body>
 </html>

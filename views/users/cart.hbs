@@ -182,8 +182,11 @@
                 }
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
             });
+
+            
         }).catch(err => {
-            alert("Not able to update cart");
+            window.location.reload();
+            
         })
     }
     else if(ev.target.classList.contains('increase')){
@@ -222,7 +225,7 @@
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
             });
         }).catch(err => {
-            alert("Not able to update cart");
+            window.location.reload();
         })
     }
 })

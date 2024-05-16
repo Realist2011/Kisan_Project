@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const products = require("../models/products");
-const bodyParser = require("body-parser");
-
+const mongoose = require('mongoose')
+const products = require('../models/products')
+const bodyParser = require('body-parser')
+const cart = require('../models/cart')
 module.exports.postAddProduct = async (req, res, next) => {
-  console.log(req.body);
-  const { name, price, seller, imageUrl, description, category } = req.body;
+  console.log(req.body)
+  const { name, price, seller, imageUrl, description, category } = req.body
   try {
     await products.create({
       name,
@@ -13,90 +13,98 @@ module.exports.postAddProduct = async (req, res, next) => {
       imageUrl,
       description,
       category,
-    });
-    res.redirect("/admin/products/all");
+    })
+    res.redirect('/admin/products/all')
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 ///////////
 module.exports.getProductsAll = async (req, res, next) => {
   try {
-    let { page, limit } = req.query;
-    if (!page) page = 1;
-    if (!limit) limit = 15;
-    let skip = (page - 1) * limit;
-    let allProducts = await products.find().skip(skip).limit(limit);
-    res.render("admin/products-list", { products: allProducts });
-    console.log();
+    let { page, limit } = req.query
+    if (!page) page = 1
+    if (!limit) limit = 15
+    let skip = (page - 1) * limit
+    let allProducts = await products.find().skip(skip).limit(limit)
+    res.render('admin/products-list', { products: allProducts })
+    console.log()
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getAddProduct = async (req, res, next) => {
-  res.render("admin/form");
-};
+  res.render('admin/form')
+}
 
 module.exports.getIndex = (req, res, next) => {
-  res.render("admin/home");
-};
+  res.render('admin/home')
+}
 
 module.exports.getProductId = async (req, res, next) => {
-  let id = req.params.id;
-  console.log(id);
+  let id = req.params.id
+  console.log(id)
   try {
-    let p = await products.findOne({ _id: new mongoose.Types.ObjectId(id) });
-    console.log(p);
-    res.render("admin/product-detail", {
+    let p = await products.findOne({ _id: new mongoose.Types.ObjectId(id) })
+    console.log(p)
+    res.render('admin/product-detail', {
       product: p,
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getUpdateProduct = async (req, res, next) => {
-  let id = req.params.id;
+  let id = req.params.id
   try {
-    let p = await products.findOne({ _id: new mongoose.Types.ObjectId(id) });
-    console.log(p);
-    res.render("admin/update-product", {
+    let p = await products.findOne({ _id: new mongoose.Types.ObjectId(id) })
+    console.log(p)
+    res.render('admin/update-product', {
       product: p,
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.postUpdateProduct = async (req, res, next) => {
   try {
     const { name, price, seller, imageUrl, description, id, category } =
-      req.body;
+      req.body
     const product = await products.findOne({
       _id: new mongoose.Types.ObjectId(id),
-    });
-    product.name = name;
-    product.price = price;
-    product.seller = seller;
-    product.imageUrl = imageUrl;
-    product.description = description;
-    product.save();
-    res.render("admin/product-detail", {
+    })
+    product.name = name
+    product.price = price
+    product.seller = seller
+    product.imageUrl = imageUrl
+    product.description = description
+    product.save()
+    res.render('admin/product-detail', {
       product,
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getDeleteProduct = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const product = await products.deleteOne({
+    const { id } = req.params
+    await products.deleteOne({
       _id: new mongoose.Types.ObjectId(id),
-    });
-
+    })
+    const cartobj = await cart.findOne({
+      userid: req.user._id,
+    })
+    const cartobjitem = cartobj.cartitems.filter(checkid)
+    function checkid(item) {
+      if (item.prodid != id) return item
+    }
+    cartobj.cartitems = cartobjitem
+    cartobj.save()
     /*let arr = req.user.cart.filter((val, arr, indx) => {
       return val.id != id;
     });
@@ -111,13 +119,13 @@ module.exports.getDeleteProduct = async (req, res, next) => {
         );
       }
     });*/
-    /* console.log(req.user.cart);
-    res.redirect("/user/cart/show");*/
+    /* console.log(req.user.cart);*/
+    res.redirect("/admin/products/all");
 
     /*array.forEach((element, => {
       
     });*/
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}

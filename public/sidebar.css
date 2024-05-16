@@ -5,6 +5,12 @@ a {
   text-decoration: none;
   color: black;
 }
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 35px;
+      }
+
 
 #sidebar {
   grid-area: sidebar;
@@ -44,6 +50,8 @@ body {
 .sidebar-list-item {
   padding: 20px 20px 20px 20px;
   font-size: 18px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-list-item:hover {
@@ -59,12 +67,7 @@ body {
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
-  /*
-the z-index of the ApexCharts is 11
-we want the z-index of the sidebar higher so that
-the charts are not showing over the sidebar 
-on small screens
-*/
+
   z-index: 12 !important;
 }
 .grid-container {

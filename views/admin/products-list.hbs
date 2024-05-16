@@ -16,101 +16,127 @@
     />
     <link rel="stylesheet" href="../../public/totop.css" />
     <link rel="stylesheet" href="../../public/endpage.css" />
+    <link rel="stylesheet" href="../../public/usernav.css">
     <title>Document</title>
 
-    <style>
-      @import
-      url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-      * { margin: 0; padding: 0; } body { font-family: 'Anek Devanagari',
-      sans-serif; } .navbar { width: 100%; height: 20vh; background-color:
-      lightgreen; display: flex; align-items: center; justify-content: center;
-      box-sizing: border-box; padding: 1vh; padding-top: 0; padding-bottom: 0; }
-      .bordr { border: 2px solid black; } .kklogo { height: 18vh; width: 8vw;
-      background-size: contain; background-repeat: no-repeat;
-      background-position: center; background-image: url("KISAN_KART.png"); }
-      .uppercontent { box-sizing: border-box; padding: 1vh; display: flex;
-      flex-direction: row; justify-content: space-evenly; align-items: center; }
-      /* .lowercontent { height: 30%; display: flex; align-items: center;
-      box-sizing: border-box; background-color: rgba(91, 167, 91, 0.747);
-      border-radius: 100px; } */ .navcontent { height: 100%; width: 100%;
-      display: flex; flex-direction: column; justify-content: center; } .size1 {
-      width: 13vw; height: 100%; } .location { display: flex; align-items:
-      center; } .loclogo, .fa-location-dot { font-size: 2vw; margin: 0.4vh; }
-      .searchbar { width: 50vw; height: 5vh; display: flex; align-items: center;
-      } #searchInput { width: 90%; height: 4.8vh; border-top-right-radius: 0;
-      border-bottom-right-radius: 0; border-top-left-radius: 100px;
-      border-bottom-left-radius: 100px; } .fa-magnifying-glass { font-size:
-      1.7vw; } .searchbutton { width: 4vw; height: 4.99vh; border-radius: 0;
-      background-color: white; border-bottom-right-radius: 100px;
-      border-top-right-radius: 100px; border: none; } .size2 { height: 8vh;
-      width: 5vw; } .size3 { height: 8vh; width: 10vw; } .cart { display: flex;
-      flex-wrap: wrap; align-items: center; } .cartlogo { height: 4vh; width:
-      5vw; } .carttext { font-size: 2vh; font-weight: bold; } .fa-cart-shopping
-      { font-size: 1.8vw; } a { text-decoration: none; color: black; } .login {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; justify-content: space-evenly; } .loginupper {
-      display: flex; text-align: right; height: fit-content; padding: 0.3vh; }
-      .loginbottom { height: fit-content; z-index: 1; } .username { position:
-      relative; height: fit-content; padding: 0.2vh; top: 1.5vh; text-align:
-      left; font-weight: bold; font-size: 2vh; } .joinasseller { display: flex;
-      flex-direction: column; justify-content: space-evenly; justify-content:
-      center; padding: 0.4vh; align-items: center; font-weight: bold; }
-      .product_card {   width: 300px; height: 420px; margin: 20px; img {
-      border-radius: 20px; height: 250px; width: 250px; margin: 25px 25px 20px
-      25px; } background-color: #e9e7e760; box-shadow: 2px 2px 4px gray;
-      border-radius: 20px; display: inline-block; } .product_card:hover {
-      filter: drop-shadow(2px 2px 10px rgba(128, 128, 128, 0.188)) }
-      .pdescription { overflow: hidden;font-size: larger; height: 200px; width: 250px; margin:
-      0px 25px 25px 25px; line-height: 24px; h4 { color: green; } } #price {}
-      #pd { color: gray; } #heading { font-size: 44px; margin-top: 30px;
-      margin-bottom: 25px; text-align: center; color: rgb(4, 95, 4);
-      font-weight: bold; } .product { display: flex; flex-wrap: wrap;
-      justify-content: space-evenly; align-items: } 
+<style>
+      @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Anek Devanagari',
+          sans-serif;
+      }
+      .product_card {
+        width: 300px;
+        height: 420px;
+        margin: 20px;
+        overflow: hidden;
+      
+        white-space: nowrap;
+
+        img {
+          border-radius: 20px;
+          height: 250px;
+          width: 250px;
+          margin: 25px 25px 20px 25px;
+        }
+
+        background-color: #e9e7e760;
+        box-shadow: 2px 2px 4px gray;
+        border-radius: 20px;
+        display: inline-block;
+      }
+
+      .product_card:hover {
+        filter: drop-shadow(2px 2px 10px rgba(128, 128, 128, 0.188))
+      }
+
+      .pdescription {
+        text-overflow: ellipsis;
+        font-size: larger;
+        overflow: hidden;
+        height: 200px;
+        width: 250px;
+        margin:
+          0px 25px 25px 25px;
+        line-height: 24px;
+
+        h4 {
+          color: green;
+        }
+      }
+
+      #price {
+        font-weight: 600;
+      }
+
+      #pd {
+        color: gray;
+      }
+
+      #heading {
+        font-size: 44px;
+        margin-top: 30px;
+        margin-bottom: 25px;
+        text-align: center;
+        color: rgb(4, 95, 4);
+        font-weight: bold;
+      }
+
+      .product {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      h2{
+        margin-top: 4px;
+      }
     </style>
 
   </head>
 
   <body>
-
+    {{>navbar}}
     <h1 id="heading">Admin Products List</h1>
 
     <div class="product">
       {{#each products as |p|}}
 
-        <div class="product_card" data-aos="fade-up">
-          <img src="{{p.imageUrl}}" data-aos="zoom-in" /><br />
-          <div class="pdescription">
-            <h2>
-              {{p.name}}
-            </h2>
+      <div class="product_card" data-aos="fade-up">
+        <img src="{{p.imageUrl}}" data-aos="zoom-in" /><br />
+        <div class="pdescription">
+          <h2>
+            {{p.name}}
+          </h2>
+          <p id="pd"> {{p.description}}</p>
+          <span id="price">&#8377;
+            {{p.price}}
 
-            <span id="pd">{{p.description}}</span><br />
-            <span id="price">&#8377;
-              {{p.price}}
-
-            </span><br />
-            <h4>40% OFF</h4>
-            {{#if p.reviews}}
-              <h5>Reviews</h5>
-              <ul>
-                {{#each p.reviews as |r|}}
-                  <li>{{r.details}}</li>
-                {{/each}}
-              </ul>
-            {{/if}}
-            <a href="{{p._id}}">GET Info</a>
-          </div>
+          </span><br />
+          <h4>40% OFF</h4>
+          {{#if p.reviews}}
+          <h5>Reviews</h5>
+          <ul>
+            {{#each p.reviews as |r|}}
+            <li>{{r.details}}</li>
+            {{/each}}
+          </ul>
+          {{/if}}
+          <h3><a href="{{p._id}}">GET Info</a></h3>
         </div>
+      </div>
       {{/each}}
 
     </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       AOS.init({ offset: 200, Duration: 1000 })
 
@@ -120,7 +146,7 @@
       <i class="fas fa-chevron-up"></i>
     </a>
     <script src="../../toTop.js"></script>
-    
+
     {{>endpage}}
   </body>
 </html>

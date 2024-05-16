@@ -201,19 +201,21 @@
 
         </div>
         <div class="review-section">
-            <div class="review-section-header">
+            {{!-- <div class="review-section-header">
                 <div>
                     <h2 class="h2">Reviews</h2>
                 </div>
                 <button class="reviewBtn">Add a Review</button>
-            </div>
+            </div> --}}
 
-            <div class="review-section-details hide">
+            <form action="/user/review/add" method="post">
+                <div class="review-section-details hide">
                 <textarea cols="40" rows="5" type="text" name="review" id="review"
                     placeholder="Enter a review"> </textarea>
-                <button class="submitReview">Submit Review</button>
-                <div style="display: none;">{{product._id}}</div>
+                <button class="submitReview" type="submit">Submit Review</button>
+                <div name="productId" style="display: none;">{{product._id}}</div>
             </div>
+            </form>
             {{>reviewSection product=product}}
         </div>
 
