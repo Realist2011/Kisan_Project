@@ -122,3 +122,12 @@ a {
   align-items: center;
   font-weight: bold;
 }
+.cartQuantity {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 3.7vh;
+  right: 4.88vw;
+  color: whitesmoke;
+  font-size: 1rem;
+}

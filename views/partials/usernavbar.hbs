@@ -53,10 +53,14 @@
           </div>
           <div class="logo border size2">
             <div class="logodiv border">
-
               <a href="/user/cart/show"><i class="fa-solid fa-cart-shopping" style="font-size: 1.8vw"></i>
             </div>
             <div class="logotext border">Cart</div></a>
+            <a href="/user/cart/show">
+            {{#if cartQuantity}}
+             <button class="cartQuantity">{{cartQuantity}}</button>
+            {{/if}}
+            </a>
           </div>
         </div>
        

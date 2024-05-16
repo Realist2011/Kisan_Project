@@ -8,6 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <title>Document</title>
+    <link rel="stylesheet" href="../../public/usernav.css">
     <style>
         .cartItems{
             display: flex;
@@ -111,11 +112,17 @@
         .fa-square-minus,.fa-square-plus{
             pointer-events: none;
         }
+        *{
+            margin: 0;
+        }
+        .navbar{
+            margin-bottom: 2vh;
+        }
     </style>
 </head>
 <body>
 
-    {{>navbar cartQuantity = cartQuantity}}
+    {{>usernavbar cartQuantity = cartQuantity}}
     <h1>Cart</h1>
     
     <div class="cartItems">
