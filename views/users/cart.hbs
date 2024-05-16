@@ -108,6 +108,9 @@
         .fa-truck-fast{
             font-size: larger;
         }
+        .fa-square-minus,.fa-square-plus{
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -117,17 +120,17 @@
     
     <div class="cartItems">
         <div class="Allitems">
-            {{#each cart as |p|}}
+            {{#each cart.cartitems as |p|}}
         <div class="cartitem">
-            <div class="prodimage"><img src="{{p.id.imageUrl}}" height="150px" width="150px" ></div>
-            <div class="proddetails"><div class="name">Name: {{p.id.name}}</div>
-            <div class="desc"> Description: {{p.id.description}}</div>
-            <div class="price">Price: {{p.id.price}}</div>
+            <div class="prodimage"><img src="{{p.prodid.imageUrl}}" height="150px" width="150px" ></div>
+            <div class="proddetails"><div class="name">Name: {{p.prodid.name}}</div>
+            <div class="desc"> Description: {{p.prodid.description}}</div>
+            <div class="price">Price: {{p.prodid.price}}</div>
             <div class="quantity">
-                <button id={{p.id._id}} class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
-                <button id={{p.id._id}} class="increase"><i class="fa-regular fa-square-plus"></i></button>
+                <button id='{{p.prodid._id}}' class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
+                <button id='{{p.prodid._id}}' class="increase"><i class="fa-regular fa-square-plus"></i></button>
             </div>
-            <div style="display:none" id="{{p.id._id}}"></div></div>
+            <div style="display:none" id="{{p.prodid._id}}"></div></div>
 
 
             
@@ -144,29 +147,29 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 
     <script >
-        let items = document.querySelector('.cartItem')
-        items.addEventListener('click',(ev)=>{
-        if( ev.target.classList.contains('decrease')){
+        let items = document.querySelector('.cartItems')
+items.addEventListener('click',(ev)=>{
+    if( ev.target.classList.contains('decrease')){
         let id = ev.target.parentElement.nextElementSibling.getAttribute('id')
         axios.get(`/user/cart/decrease?id=${id}`).then(({data})=>{
             let {cart,totalPrice,cartQuantity} = data 
             document.querySelector('totalPrice').innerText = totalPrice
             items.innerHTML=""
-            cart.forEach(p => {
+            cart.cartitem.forEach(p => {
                 let li = document.createElement('li')
                 li.innerHTML=`
-                <img src=${p.id.imageUrl}height="150px" width="150px" ><br>
-            Name: <span>${p.id.name}</span><br>
-            Description: <span>${p.id.desccription}</span><br>
-            Price: <span>${p.id.price}</span><br>
+                <img src=${p.prodid.imageUrl}height="150px" width="150px" ><br>
+            Name: <span>${p.prodid.name}</span><br>
+            Description: <span>${p.prodid.desccription}</span><br>
+            Price: <span>${p.prodid.price}</span><br>
                 `
                 li.innerHTML += `<div class="quantity">
                                     <button class="decrease">-</button> Quantity: ${p.quantity} <button
                                          class="increase">+</button>
                                 </div>
-                                <div style="display: none;" id="${p.id._id}"></div>
+                                <div style="display: none;" id="${p.prodid._id}"></div>
             `
-                cartItems.appendChild(li);
+                items.appendChild(li);
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
             });
         }).catch(err => {
@@ -180,16 +183,16 @@
             // console.log(data);
             let { cart, totalPrice, cartQuantity } = data;
             document.querySelector('.totalPrice').innerText = totalPrice;
-            cartItems.innerHTML = "";
+            items.innerHTML = "";
             // console.log(cart)
-            cart.forEach(p => {
+            cart.cartitems.forEach(p => {
                 // totalPrice += parseInt(p.id.price) * parseInt(p.quantity);
                 let li = document.createElement('li');
                 li.innerHTML = `
                 <img height="150px" src=${p.id.imageUrl}></img><br>
-                Name: <span>${p.id.name}</span> <br>
-                Description: <span>${p.id.description}</span><br>
-                Price: <span>${p.id.price}</span><br>
+                Name: <span>${p.prodid.name}</span> <br>
+                Description: <span>${p.prodid.description}</span><br>
+                Price: <span>${p.prodid.price}</span><br>
             `
                 // if (p.id.reviews.length > 0) {
                 //     let str = ""
@@ -202,9 +205,9 @@
                                     <button class="decrease">-</button> Quantity: ${p.quantity} <button
                                          class="increase">+</button>
                                 </div>
-                                <div style="display: none;" id="${p.id._id}"></div>
+                                <div style="display: none;" id="${p.prodid._id}"></div>
             `
-                cartItems.appendChild(li);
+                items.appendChild(li);
 
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
             });

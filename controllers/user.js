@@ -1,175 +1,179 @@
-const products = require("../models/products");
-const mongoose = require("mongoose");
-const users = require("../models/kisan");
+const products = require('../models/products')
+const mongoose = require('mongoose')
+const users = require('../models/kisan')
+const cart = require('../models/cart')
 
 module.exports.getProductsAll = async (req, res, next) => {
   try {
-    let all_products = await products.find({});
-    res.render("users/products-list", {
+    let all_products = await products.find({})
+    res.render('users/products-list', {
       products: all_products,
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getProductById = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params
     let product = await products.findOne({
       _id: new mongoose.Types.ObjectId(id),
-    });
+    })
     // console.log(product)
-    res.render("users/product-details", {
+    res.render('users/product-details', {
       product: product,
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getAddtoCartById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const cart = req.user.cart;
-    let index = -1;
-    cart.forEach((item, indx) => {
-      if (item.id == id) {
-        index = indx;
-      }
-    });
-    if (index == -1) {
-      req.user.cart.unshift({
-        id: id,
-        quantity: 1,
-      });
-    } else {
-      req.user.cart[index].quantity++;
-    }
-    req.user.save();
-    res.redirect("/user/cart/show");
+    let pid = req.params.id
+
+    const cart_obj = await cart.findOne({
+      userid: req.user._id,
+    })
+    cart_obj.cartitems.push({
+      prodid: pid,
+      quantity: 1,
+    })
+    cart_obj.save()
+    console.log(cart_obj)
+    res.redirect('/user/cart/show')
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getCartShow = async (req, res, next) => {
   try {
-    let user = await users
+    let cart_obj = await cart
       .findOne({
-        _id: req.user._id,
+        userid: req.user._id,
       })
-      .populate("cart.id");
+      .populate('cartitems.prodid')
 
-    console.log(user.cart);
+    let totalPrice = 0
+    cart_obj.cartitems.forEach((item) => {
+      totalPrice += parseInt(item.prodid.price) * parseInt(item.quantity)
+      console.log(cart_obj.cartitems.length)
+    })
 
-    let totalPrice = 0;
-    user.cart.forEach((item) => {
-      totalPrice += parseInt(item.id.price) * parseInt(item.quantity);
-    });
-    console.log(user.cart.length);
-    res.render("users/cart", {
-      cart: user.cart,
+    res.render('users/cart', {
+      cart: cart_obj,
       totalPrice,
-      cartQuantity: user.cart.length,
-    });
+      cartQuantity: cart_obj.cartitems.length,
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getCartDecrease = async (req, res, next) => {
-  const { id } = req.query;
+  const { id } = req.query
+  console.log(id)
   try {
-    let user = await users
+    // let user = await users
+    //   .findOne({
+    //     _id: req.user._id,
+    //   })
+    //   .populate("cart.id");
+
+    // console.log(user.cart);
+    let carts = await cart
       .findOne({
-        _id: req.user._id,
+        userid: req.user._id,
       })
-      .populate("cart.id");
+      .populate('cartitems.prodid')
 
-    console.log(user.cart);
-
-    let totalPrice = 0;
-    let newCart = [];
-    user.cart.forEach((item) => {
-      if (item.id._id == id) {
-        if (item.quantity > 1) {
-          newCart.push({ ...item, quantity: item.quantity - 1 });
-          totalPrice += parseInt(item.id.price) * parseInt(item.quantity - 1);
-        }
-      } else {
-        newCart.push(item);
-        totalPrice += parseInt(item.id.price) * parseInt(item.quantity);
+    let totalPrice = 0
+    // cartitems=await cart.find({
+    //   userid:req.user._id,
+    // })
+    console.log('hey')
+    console.log(carts)
+    carts.cartitems.forEach((item) => {
+      console.log(item.prodid._id)
+      if (item.prodid._id == id) {
+        item.quantity--
       }
-    });
-    user.cart = newCart;
-    user.save();
-    console.log(user.cart.length);
+      totalPrice += item.prodid.price * item.quantity
+    })
+    carts.save()
     res.send({
-      cart: user.cart,
+      cart: carts,
       totalPrice,
-      cartQuantity: user.cart.length,
-    });
+      cartQuantity: carts.cartitems.length,
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.getCartIncrease = async (req, res, next) => {
-  const { id } = req.query;
+  const { id } = req.query
+  console.log(id)
   try {
-    let user = await users
+    // let user = await users
+    //   .findOne({
+    //     _id: req.user._id,
+    //   })
+    //   .populate("cart.id");
+
+    // console.log(user.cart);
+    let carts = await cart
       .findOne({
-        _id: req.user._id,
+        userid: req.user._id,
       })
-      .populate("cart.id");
+      .populate('cartitems.prodid')
 
-    console.log(user.cart);
-
-    let totalPrice = 0;
-    let newCart = [];
-    user.cart.forEach((item) => {
-      if (item.id._id == id) {
-        newCart.push({ ...item, quantity: item.quantity + 1 });
-        totalPrice += parseInt(item.id.price) * parseInt(item.quantity + 1);
-      } else {
-        newCart.push(item);
-        totalPrice += parseInt(item.id.price) * parseInt(item.quantity);
+    let totalPrice = 0
+    // cartitems=await cart.find({
+    //   userid:req.user._id,
+    // })
+    console.log('hey')
+    console.log(carts)
+    carts.cartitems.forEach((item) => {
+      console.log(item.prodid._id)
+      if (item.prodid._id == id) {
+        item.quantity++
       }
-    });
-    user.cart = newCart;
-    user.save();
-    console.log(user.cart.length);
+      totalPrice += item.prodid.price * item.quantity
+    })
+    carts.save()
     res.send({
-      cart: user.cart,
+      cart: carts,
       totalPrice,
-      cartQuantity: user.cart.length,
-    });
+      cartQuantity: carts.cartitems.length,
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 module.exports.postAddReview = async (req, res, next) => {
-  const { productId, review } = req.body;
+  const { productId, review } = req.body
 
   try {
-    let product = await products.findOne({ _id: productId });
+    let product = await products.findOne({ _id: productId })
     product.reviews.unshift({
       details: review,
       userId: req.user._id,
-    });
-    product.save();
+    })
+    product.save()
     let user = await users.findOne({
       _id: req.user._id,
-    });
+    })
     res.send({
       reviews: product.reviews,
       user: {
         name: user.name,
       },
-    });
+    })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}

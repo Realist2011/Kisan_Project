@@ -24,15 +24,6 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
-  cart: [
-    {
-      id: {
-        type: Schema.Types.ObjectId,
-        ref: 'products',
-      },
-      quantity: Number,
-    },
-  ],
 })
 UserSchema.pre('save', async function (next) {
   try {

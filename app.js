@@ -26,7 +26,7 @@ app.use(passport.session())
 // require('./authentication/passport')
 app.use(async (req, res, next) => {
   try {
-    let user = await users.findOne({ name: 'Satvik Bajaj' })
+    let user = await users.findOne({ name: 'tanushk nirmal' })
     req.user = user
     next()
   } catch (err) {
