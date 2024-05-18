@@ -4,6 +4,7 @@
   background-color: lightgreen;
   display: flex;
   padding-top: 3%;
+  margin-top: 15vh;
   justify-content: center;
   flex-direction: column;
   justify-content: space-between;
@@ -40,19 +41,28 @@
 .lastdiv {
   height: 10vh;
   width: 100%;
+  justify-content: space-between;
   display: flex;
   align-items: center;
-  background-color: #1f1f1f;
-  justify-content: space-between;
+  background-color: black;
 }
-.socials {
-  color: white;
-  padding-left: 3vw;
+
+.logoend{
+  img{
+    height:60px;
+    width: 60px;
+    margin-left: 3vw;
+  }
+
+}
+.copyright{
+  color:whitesmoke;
+  padding-left: 10vw;
 }
 .platforms {
   display: flex;
   justify-content: space-evenly;
-  width: 20%;
+  width: 18%
 }
 .fa-brands {
   font-size: 5vh;

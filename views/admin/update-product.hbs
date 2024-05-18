@@ -257,7 +257,7 @@
     .cartquantity {
       border: 10px solid black;
     }
-    
+
     .formdiv {
       width: 90%;
       height: 85%;
@@ -277,7 +277,7 @@
       padding: 2vw;
       font-size: 1.5rem;
       font-weight: bold;
-      line-height: 2.5;
+      line-height: 2.2;
     }
 
     input {
@@ -293,15 +293,19 @@
       font-weight: bolder;
       background-color: white;
       border-radius: 15px;
+      border: solid 2px;
       margin-top: 8vh;
       position: relative;
       left: 35vw;
       bottom: 9.5vh;
+      font-size: 1.2rem;
+      font-family: 'Montserrat';
     }
 
     .sub:hover {
-      background-color: rgba(100, 255, 107, 255);
-      
+      background-color: rgba(80, 255, 107, 255);
+      cursor: pointer;
+
     }
 
     .d {
@@ -310,7 +314,8 @@
 
     h1 {
       margin: 4vh auto 3vh 3vw;
-      font-size: 3rem;
+      font-size: 3.1rem;
+      font-family: 'Montserrat';
     }
 
     h2 {
@@ -318,6 +323,7 @@
       font-size: 2.5rem;
       margin-top: -3vh;
     }
+
     .maindiv {
       display: flex;
       flex-direction: column;
@@ -337,7 +343,6 @@
       border: solid 3px;
       border-radius: 50%;
     }
-    
   </style>
 
   <body>
@@ -348,27 +353,26 @@
         <h1>UPDATE PRODUCT</h1>
       </div>
       <form action="/admin/products/updateproduct" method="post" class="form">
-      <div class="formdiv">
+        <div class="formdiv">
 
-        <div class="leftformdiv">
+          <div class="leftformdiv">
 
-          <h2>Add product details here </h2>
-          Image Url: <br><input type="text" name="imageUrl" value={{product.imageUrl}}><br>
-          Name: <br><input type="text" name="name" value={{product.name}}></input> <br>
-          Description: <br><input type="text" name="description" value={{product.description}}></input> <br>
-          Price: <br><input type="text" name="price" value={{product.price}}></input> <br>
-          Seller: <br><input type="text" name="seller" value={{product.seller}}></input> <br>
-          <input type="hidden" name="id" value={{product._id}}></input>
-          {{>reviewSection product=product}}
-          <button class="sub" type="submit">Update Product</button>
-        </div>
-        <div class="rightformdiv">
-          <div class="innerdiv"><img src={{product.imageUrl}}></img></div>
-        </div>
-        </form>
-      </div>
-    
-  
+            <h2>Add product details here </h2>
+            Image Url: <br><input type="text" name="imageUrl" value={{product.imageUrl}}><br>
+            Name: <br><input type="text" name="name" value={{product.name}}></input> <br>
+            Category: <br><input type="text" name="category" value={{product.category}}></input> <br>
+            Description: <br><input type="text" name="description" value={{product.description}}></input> <br>
+            Price: <br><input type="text" name="price" value={{product.price}}></input> <br>
+            Seller: <br><input type="text" name="seller" value={{product.seller}}></input> <br>
+            <input type="hidden" name="id" value={{product._id}}></input>
+            {{>reviewSection product=product}}
+            <button class="sub" type="submit">UPDATE</button>
+          </div>
+          <div class="rightformdiv">
+            <div class="innerdiv"><img src={{product.imageUrl}}></img></div>
+          </div>
+      </form>
+    </div>
 
   </body>
 

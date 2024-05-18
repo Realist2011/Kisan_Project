@@ -77,6 +77,7 @@ module.exports.postUpdateProduct = async (req, res, next) => {
       _id: new mongoose.Types.ObjectId(id),
     })
     product.name = name
+    product.category=category
     product.price = price
     product.seller = seller
     product.imageUrl = imageUrl
