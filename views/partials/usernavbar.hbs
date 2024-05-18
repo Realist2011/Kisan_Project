@@ -18,23 +18,26 @@
             </div>
           </a>
           <div class="searchbar border">
-            <form action="" class="searchbar">
+            <form action="/search/product" class="searchbar" method="post">
               <input
+              name="search"
                 type="text"
                 placeholder="Search..."
                 id="searchInput"
                 style="border: none; outline: none; text-indent: 15px"
               />
-              <a href="">
-                <button class="searchbutton">
+                <button class="searchbutton" type="submit" >
                   <i class="fa-solid fa-magnifying-glass icon" style="font-size: 1.65vw"></i>
                 </button>
-              </a>
+              
             </form>
           </div>
+          {{#if isloggedin}}
+          <a href="/logout"> <span>logout</span></a>
           
+          {{else}}
           <div class="logo size2 border">
-            <a href="login.html"
+            <a href="/user/login"
               ><div class="logodiv border userlogo">
                 
                   <i class="fa-solid fa-user" style="font-size: 1.65vw"></i>
@@ -42,7 +45,7 @@
                 <div class="logotext border">Login</div></a
             >
               </div>
-           
+           {{/if}}
           
           <div class="logo size2 border">
             <a href="../public/index.html"

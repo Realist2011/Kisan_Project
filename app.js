@@ -6,8 +6,20 @@ const path = require('path')
 const hbs = require('hbs')
 const users = require('./models/kisan')
 const mongoose = require('mongoose')
-const products=require('./models/products')
+const products = require('./models/products')
 require('dotenv').config()
+const passport = require('passport')
+app.use(
+  require('express-session')({
+    secret: 'keyboard dog',
+    resave: true,
+    saveUninitialized: true,
+  }),
+)
+app.use(passport.initialize())
+const bcrypt = require('bcrypt')
+app.use(passport.session())
+require('./authentication/passport')
 
 //app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
@@ -21,23 +33,21 @@ app.use(
     saveUninitialized: true,
   }),
 )
-const passport = require('passport')
-app.use(passport.initialize())
-app.use(passport.session())
-// require('./authentication/passport')
-app.use(async (req, res, next) => {
-  try {
-    let user = await users.findOne({ name: 'tanushk nirmal' })
-    req.user = user
-    next()
-  } catch (err) {
-    next(err)
-  }
-})
+
+// app.use(async (req, res, next) => {
+//   try {
+//     let user = await users.findOne({ name: 'tanushk nirmal' })
+//     req.user = user
+//     next()
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 const homerouter = require('./routes/home')
 
 app.get('/user/login', (req, res, next) => {
+  if (req.user) return res.redirect('/')
   res.render('login')
 })
 app.use(express.static(__dirname))
@@ -45,6 +55,7 @@ app.post(
   '/user/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
+    console.log(req.user)
     res.redirect('/user/products/all')
   },
 )
@@ -65,14 +76,20 @@ app.get(
     res.redirect('/user/products/all')
   },
 )
-
+app.get('/product/search/:category', async (req, res) => {
+  let cat = req.params.category
+  const prod = await products.find({
+    category: cat,
+  })
+  res.render('users/products-list', { products: prod })
+})
 app.get('/logout', function (req, res, next) {
   req.logout(function (err) {
     if (err) {
       return next(err)
     }
-
-    res.redirect('/auth/google')
+    console.log('you have been logged Out successfully')
+    res.redirect('/')
   })
 })
 
@@ -93,11 +110,12 @@ app.use('/admin', adminRouter)
   res.send(`Hey mofo ${name}`);
 });*/
 
-/*app.post("/register", async (req, res) => {
-  const { pswd, name, phone, Email, city, country, u, a } = req.body;
-  let ar = [name, pswd, phone, Email, city, country];
+app.post('/register', async (req, res) => {
+  const { password, username, phone, Email, city, country, u, a } = req.body
+  let ar = [username, password, phone, Email, city, country]
   // res.send(pswd);
-  res.render("index", { data: ar });
+
+  res.render('index', { data: ar })
   // if (u) {
   //   console.log("Registered as a user");
   // } else if (a) {
@@ -105,16 +123,16 @@ app.use('/admin', adminRouter)
   // }
 
   await users.create({
-    name,
-    pswd,
+    username,
+    password,
     phone,
     Email,
     city,
     country,
-  });
-  let f = await users.find({});
-  console.log(f);
-});
+  })
+  let f = await users.find({})
+  console.log(f)
+})
 /*app.get("/abt", (req, res) => {
   res.send("Hey mofo");
 }); */
@@ -138,12 +156,16 @@ app.use('/admin', adminRouter)
     console.log(e);
   }
 });*/
-app.post('/search/product',async(req,res)=>{
-  const {search} = req.body;
-  const prod= await products.find({
-    category:search
+app.post('/search/product', async (req, res) => {
+  const { search } = req.body
+  if (!search) {
+    res.redirect('/')
+  }
+  const searchRegex = new RegExp(search, 'i')
+  const prod = await products.find({
+    category: { $regex: searchRegex },
   })
-  res.render('users/products-list',{products:prod})
+  res.render('users/products-list', { products: prod })
 })
 mongoose.connect('mongodb://127.0.0.1:27017/KisanCart').then(() => {
   app.listen(PORT, () => {

@@ -7,6 +7,7 @@ let index = 0
 let banner = document.querySelector('.banner')
 banner.style.backgroundImage = `url(${images[index]})`
 function changeslide(bool) {
+  clearInterval(intervalid)
   if (bool == true) {
     index = (index + 1) % images.length
   } else {
@@ -14,9 +15,13 @@ function changeslide(bool) {
   }
   banner.style.backgroundImage = `url(${images[index]})`
   console.log(index)
-  clearInterval(intervalid)
-  // changeslideauto()
+  
+  setTimeout(() => {
+    intervalid = setInterval(changeslideauto, 5000);
+  }, 1000);
 }
+  // changeslideauto()
+
 let nextslide = document.getElementById('next_banner')
 let prevslide = document.getElementById('previous_banner')
 
@@ -38,104 +43,62 @@ let intervalid = setInterval(() => {
 }, 5000)
 window.onload = changeslideauto
 //---------------------------------------------------------
-// const nextprotbutton = document.getElementById('next_product_protection')
-// const prevprotbutton = document.getElementById('previous_product_protection')
-// const nextseedbutton = document.getElementById('next_product_seeds')
-// const prevseedbutton = document.getElementById('previous_product_seeds')
-// // const protectionboxes = document.querySelectorAll('.protectionbox')
-// const product = document.querySelectorAll('.product')
 
-// prevprotbutton.style.display = 'none'
-// prevseedbutton.style.display = 'none'
-// let counter = 1
-// nextprotbutton.addEventListener('click', () => {
-//   if (counter < 7) {
-//     prevprotbutton.style.display = 'block'
-//     product.forEach((element) => {
-//       element.style.right = `${counter * 15}vw`
-//     })
-//     counter++
-//     console.log(counter)
-//   }
-//   if (counter == 7) {
-//     nextprotbutton.style.display = 'none'
-//   }
-// })
-// prevprotbutton.addEventListener('click', () => {
-//   if (counter > 1) {
-//     nextprotbutton.style.display = 'block'
-//     counter--
-//     protectionboxes.forEach((element) => {
-//       element.style.right = `${(counter - 1) * 16}vw`
-//     })
-//     console.log(counter)
-//   }
-//   if (counter == 1) {
-//     prevprotbutton.style.display = 'none'
-//   }
-// })
-// ///////////////////////////////////////////////////////
-// let counter2 = 1
-// nextseedbutton.addEventListener('click', () => {
-//   if (counter2 < 7) {
-//     prevseedbutton.style.display = 'block'
-//     seedboxes.forEach((element) => {
-//       element.style.right = `${counter2 * 16}vw`
-//     })
-//     counter2++
-//     console.log(counter)
-//   }
-//   if (counter2 == 7) {
-//     nextseedbutton.style.display = 'none'
-//   }
-// })
-// prevseedbutton.addEventListener('click', () => {
-//   if (counter2 > 1) {
-//     nextseedbutton.style.display = 'block'
-//     counter2--
-//     seedboxes.forEach((element) => {
-//       element.style.right = `${(counter2 - 1) * 16}vw`
-//     })
-
-//     console.log(counter)
-//   }
-//   if (counter2 == 1) {
-//     prevseedbutton.style.display = 'none'
-//   }
-// })
 
 const nextBtns = document.querySelectorAll('#next_product')
 const prevBtns = document.querySelectorAll('#previous_product')
-let counter = 1
+
+prevBtns.forEach(btn => {
+  btn.style.display = 'none';
+});
+
 nextBtns.forEach((btn) => {
   btn.addEventListener('click', function () {
     const productContainer = btn.closest('.item-list')
     const products = productContainer.querySelectorAll('.seedbox')
+    const prevBtn = productContainer.querySelector('#previous_product')
+    const nextBtn = productContainer.querySelector('#next_product')
+    if(!productContainer.counter){
+      productContainer.counter=0;
+    }
     console.log(products)
-    if (counter < 7) {
-      counter++
+    if (productContainer.counter < 7) {
+      productContainer.counter++
       products.forEach((Element) => {
-        Element.style.right = `${counter * 15}vw`
+        Element.style.right = `${productContainer.counter * 16.4}vw`
       })
     }
-
-    console.log('pressed', counter)
+    if (productContainer.counter == 7) {
+      nextBtn.style.display = 'none'
+    }
+    if (productContainer.counter>0) {
+      prevBtn.style.display = 'block'
+    }
+    console.log('pressed', productContainer.counter)
   })
 })
 
 prevBtns.forEach((btn) => {
   btn.addEventListener('click', function () {
-    btn.style.display = 'block'
     const productContainer = btn.closest('.item-list')
     const products = productContainer.querySelectorAll('.seedbox')
+    const prevBtn = productContainer.querySelector('#previous_product')
+    const nextBtn = productContainer.querySelector('#next_product')
     console.log(products)
-    if (counter > 1) {
-      counter--
+    if (productContainer.counter >= 1) {
+      
       products.forEach((Element) => {
-        Element.style.right = `${(counter - 1) * 15}vw`
+        Element.style.right = `${(productContainer.counter - 1) * 16.4}vw`
       })
+      productContainer.counter--
+    }
+    if (productContainer.counter <1) {
+      prevBtn.style.display = 'none'
+    }
+    if (productContainer.counter<7) {
+      nextBtn.style.display = 'block'
     }
 
-    console.log('pressed', counter)
+    console.log('pressed', productContainer.counter)
   })
 })

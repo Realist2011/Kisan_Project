@@ -2,7 +2,7 @@ const products = require('../models/products')
 const mongoose = require('mongoose')
 const users = require('../models/kisan')
 const cart = require('../models/cart')
-
+const isloggedin= require('../middleware/isloggedin')
 module.exports.getProductsAll = async (req, res, next) => {
   try {
     let all_products = await products.find({})
@@ -31,6 +31,10 @@ module.exports.getProductById = async (req, res, next) => {
 
 module.exports.getAddtoCartById = async (req, res, next) => {
   try {
+
+    if (!req.isAuthenticated() || !req.user || !req.user._id) {
+      console.log("user is missing") // Redirect to login if user is not authenticated or user data is missing
+    }
     let pid = req.params.id
 
     const cart_obj = await cart.findOne({
@@ -56,6 +60,15 @@ module.exports.getAddtoCartById = async (req, res, next) => {
       console.log(cart_obj)
       res.redirect('/user/cart/show')
     }
+    // if (!cart_obj) {
+    //   // If no cart exists, create a new one
+    //   const newCart = new cart({
+    //     userid: req.user._id,
+    //     cartitems: [{ prodid: pid, quantity: 1 }],
+    //   });
+    //   await newCart.save();
+    //   return res.redirect('/user/cart/show');
+    // }
   } catch (err) {
     next(err)
   }

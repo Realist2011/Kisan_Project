@@ -5,6 +5,7 @@ module.exports.getHome = async (req, res, next) => {
   try {
     let product = await products.find({})
     let sortedProducts = sortCategory(product)
+
     res.render('index', {
       products: sortedProducts,
     })

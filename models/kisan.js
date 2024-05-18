@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 const bcrypt = require('bcrypt')
 const UserSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
-  pswd: {
+  password: {
     type: String,
     required: true,
   },
@@ -25,15 +25,15 @@ const UserSchema = new Schema({
     type: String,
   },
 })
+
 UserSchema.pre('save', async function (next) {
   try {
     const salt = await bcrypt.genSalt(10)
-    const hashpass = await bcrypt.hash(this.pswd, salt)
-    this.pswd = hashpass
+    const hashpass = await bcrypt.hash(this.password, salt)
+    this.password = hashpass
     next()
   } catch (err) {
     next(err)
   }
 })
-
 module.exports = mongoose.model('users', UserSchema) //creating the model of users with schema
