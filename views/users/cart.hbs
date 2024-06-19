@@ -181,6 +181,7 @@
                     li.remove()
                 }
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
+                ev.preventDefault();
             });
 
             
@@ -223,6 +224,7 @@
                 items.appendChild(li);
 
                 document.querySelector('.cartQuantity').innerText = cartQuantity;
+                ev.preventDefault();
             });
         }).catch(err => {
             window.location.reload();

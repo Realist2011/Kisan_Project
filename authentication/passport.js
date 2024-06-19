@@ -43,8 +43,6 @@ passport.use(new LocalStrategy(
                 else if (result ==false) return done(null,false);
                 return done(null,user)
             })
-
-
         }
         catch(err){
             if(err){return done(err)}

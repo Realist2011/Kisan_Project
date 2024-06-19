@@ -7,6 +7,7 @@ const hbs = require('hbs')
 const users = require('./models/kisan')
 const mongoose = require('mongoose')
 const products = require('./models/products')
+const seller = require('./models/seller')
 require('dotenv').config()
 const passport = require('passport')
 app.use(
@@ -31,6 +32,9 @@ app.use(
     secret: 'keyboard dog',
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+    },
   }),
 )
 
@@ -55,7 +59,7 @@ app.post(
   '/user/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
-    console.log(req.user)
+    console.log(req.user._id)
     res.redirect('/user/products/all')
   },
 )
@@ -166,6 +170,19 @@ app.post('/search/product', async (req, res) => {
     category: { $regex: searchRegex },
   })
   res.render('users/products-list', { products: prod })
+})
+app.get('/seller', async (req, res) => {
+  res.render('./admin/Joinasseller')
+})
+app.post('/seller', async (req, res) => {
+  const { Location, bank, AC_no, bank_branch } = req.body
+  const sellers = await seller.create({
+    Location,
+    bank,
+    AC_no,
+    bank_branch,
+  })
+  req.user.isseller = true
 })
 mongoose.connect('mongodb://127.0.0.1:27017/KisanCart').then(() => {
   app.listen(PORT, () => {

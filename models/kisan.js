@@ -24,6 +24,10 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
+  isseller: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 UserSchema.pre('save', async function (next) {
