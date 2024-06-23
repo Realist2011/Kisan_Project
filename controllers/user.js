@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const users = require('../models/kisan')
 const cart = require('../models/cart')
 const isloggedin = require('../middleware/isloggedin')
+const moment = require('moment')
 module.exports.getProductsAll = async (req, res, next) => {
   try {
     let all_products = await products.find({})
@@ -22,8 +23,13 @@ module.exports.getProductById = async (req, res, next) => {
       _id: new mongoose.Types.ObjectId(id),
     })
     // console.log(product)
+    product.reviews.date = moment(product.reviews.date).format('YYYY-MM-DD')
+    console.log(product.reviews.date)
+    let newdate=product.reviews.date
+    // product.save()
     res.render('users/product-details', {
       product: product,
+      date:newdate,
     })
   } catch (err) {
     next(err)
@@ -184,18 +190,25 @@ module.exports.getCartIncrease = async (req, res, next) => {
 
 module.exports.postAddReview = async (req, res, next) => {
   const { productId, review } = req.body
-  console.log(productId, review)
+
   try {
-    let pro = await products.findOne({ _id: productId })
+    let pro = await products
+      .findOne({ _id: productId })
+      .populate('reviews.userId')
+      .exec()
+
     pro.reviews.push({
       details: review,
       userId: req.user._id,
+      Username: req.user.username,
     })
+    console.log(req.user.username)
+    // console.log(productId, review, pro.reviews.userId.username)
     pro.save()
     let user = await users.findOne({
       _id: req.user._id,
     })
-    // res.render('/users/product-details', { product: pro })
+    // res.render('users/product-details', { product: pro })
     res.redirect(`/user/products/${productId}`)
   } catch (err) {
     next(err)

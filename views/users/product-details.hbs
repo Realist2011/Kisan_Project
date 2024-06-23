@@ -214,9 +214,10 @@
         <button class="submitReview" type="submit">Submit Review</button>
         <input type="hidden" name="productId" value="{{product._id}}">
     </div>
+    {{user}}
 </form>
 
-            {{>reviewSection product=product}}
+            {{>reviewSection product=product date=date}}
         </div>
 
         {{>endpage}}

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 const productSchema = new Schema({
   name: {
     type: String,
@@ -24,15 +24,17 @@ const productSchema = new Schema({
       details: String,
       userId: {
         type: Schema.Types.ObjectId,
-        ref: "users",
+        ref: 'users',
       },
+      Username: String,
+      date: { type: Date, default: Date.now },
     },
   ],
   category: {
     type: String,
     required: true,
   },
-});
+})
 
 //_id
-module.exports = mongoose.model("products", productSchema);
+module.exports = mongoose.model('products', productSchema)

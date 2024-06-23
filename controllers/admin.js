@@ -22,11 +22,11 @@ module.exports.postAddProduct = async (req, res, next) => {
 ///////////
 module.exports.getProductsAll = async (req, res, next) => {
   try {
-    let { page, limit } = req.query
-    if (!page) page = 1
-    if (!limit) limit = 15
-    let skip = (page - 1) * limit
-    let allProducts = await products.find().skip(skip).limit(limit)
+    // let { page, limit } = req.query
+    // if (!page) page = 1
+    // if (!limit) limit = 15
+    // let skip = (page - 1) * limit
+    let allProducts = await products.find()
     res.render('admin/products-list', { products: allProducts })
     console.log()
   } catch (err) {

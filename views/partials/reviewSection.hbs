@@ -1,9 +1,9 @@
 <ul class='user-reviews'>
   {{#if product.reviews}}
-
     {{#each product.reviews as |r|}}
+      <li>{{r.Username}}</li>
       <li>{{r.details}}</li>
+      <li>{{date}}</li>
     {{/each}}
-
   {{/if}}
 </ul>
