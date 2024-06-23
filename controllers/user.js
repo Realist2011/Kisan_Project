@@ -86,7 +86,6 @@ module.exports.getCartShow = async (req, res, next) => {
       totalPrice += parseInt(item.prodid.price) * parseInt(item.quantity)
       console.log(cart_obj.cartitems.length)
     })
-
     res.render('users/cart', {
       cart: cart_obj,
       totalPrice,
@@ -185,23 +184,19 @@ module.exports.getCartIncrease = async (req, res, next) => {
 
 module.exports.postAddReview = async (req, res, next) => {
   const { productId, review } = req.body
-
+  console.log(productId, review)
   try {
-    let product = await products.findOne({ _id: productId })
-    product.reviews.unshift({
+    let pro = await products.findOne({ _id: productId })
+    pro.reviews.push({
       details: review,
       userId: req.user._id,
     })
-    product.save()
+    pro.save()
     let user = await users.findOne({
       _id: req.user._id,
     })
-    res.send({
-      reviews: product.reviews,
-      user: {
-        name: user.name,
-      },
-    })
+    // res.render('/users/product-details', { product: pro })
+    res.redirect(`/user/products/${productId}`)
   } catch (err) {
     next(err)
   }
