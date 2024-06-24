@@ -1,0 +1,70 @@
+.endpage {
+  height: 40vh;
+  /* background-color: #018749; */
+  background-color: lightgreen;
+  display: flex;
+  padding-top: 2.5%;
+  margin-top: 5vh;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.boxes {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.box6 {
+  width: 15%;
+  /* border: 1px solid black; */
+  font-size: 0.9rem;
+}
+.headtext {
+  font-size: 1.4vw;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.endcontentbox {
+  border-top: 1px solid black;
+  line-height: -2px;
+  box-sizing: border-box;
+  margin: 0.2vw;
+}
+.box7 {
+  height: 4.5vh;
+  font-family: 'Montserrat',sans-serif;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 500;
+}
+.lastdiv {
+  height: 10vh;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+
+.logoend{
+  img{
+    height:60px;
+    width: 60px;
+    margin-left: 3vw;
+  }
+
+}
+.copyright{
+  color:whitesmoke;
+  padding-left: 10vw;
+}
+.platforms {
+  display: flex;
+  justify-content: space-evenly;
+  width: 18%
+}
+.fa-brands {
+  font-size: 5vh;
+}

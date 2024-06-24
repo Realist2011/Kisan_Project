@@ -1,0 +1,71 @@
+<div class="navbar border">
+      <a href="/"><div class="kklogo"></div></a>
+      <div class="navcontent">
+        <div class="uppercontent border">
+          <a href="">
+            <div class="location size1 border">
+              <div class="loclogo border">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="currentlocation">
+                <div class="currentLocationtext" style="font-size: 0.9rem">
+                  Deliver to Aryan
+                </div>
+                <div class="currentlocationlive" style="font-size: 1.2rem;font-weight:bold;">
+                  New Delhi 110089
+                </div>
+              </div>
+            </div>
+          </a>
+          <div class="searchbar border">
+            <form action="/search/product" class="searchbar" method="post">
+              <input
+              name="search"
+                type="text"
+                placeholder="Search..."
+                id="searchInput"
+                style="border: none; outline: none; text-indent: 15px"
+              />
+                <button class="searchbutton" type="submit" >
+                  <i class="fa-solid fa-magnifying-glass icon" style="font-size: 1.65vw"></i>
+                </button>
+              
+            </form>
+          </div>
+          {{#if isloggedin}}
+          <a href="/logout"> <span>logout</span></a>
+          
+          {{else}}
+          <div class="logo size2 border">
+            <a href="/user/login"
+              ><div class="logodiv border userlogo">
+                
+                  <i class="fa-solid fa-user" style="font-size: 1.65vw"></i>
+                </div>
+                <div class="logotext border">Login</div></a
+            >
+              </div>
+           {{/if}}
+          
+          <div class="logo size2 border">
+            <a href="/seller"
+              ><div class="logodiv border">
+                <i class="fa-solid fa-shop" style="font-size: 1.65vw"></i></div
+            >
+            <div class="logotext border">Join</div></a>
+          </div>
+          <div class="logo border size2">
+            <div class="logodiv border">
+              <a href="/user/cart/show"><i class="fa-solid fa-cart-shopping" style="font-size: 1.8vw"></i>
+            </div>
+            <div class="logotext border">Cart</div></a>
+            <a href="/user/cart/show">
+            {{#if cartQuantity}}
+             <button class="cartQuantity">{{cartQuantity}}</button>
+            {{/if}}
+            </a>
+          </div>
+        </div>
+       
+      </div>
+    </div>

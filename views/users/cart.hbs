@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../public/usernav.css">
+    <style>
+        .cartItems{
+            display: flex;
+            {{!-- border: 1px solid black; --}}
+            justify-content: center;
+            justify-content: space-evenly;
+            
+            {{!-- background-image: url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMy1jaGltLTIyLXEtd2FsbC5qcGc.jpg); --}}
+            
+            background-size: cover;
+            border-radius: 20px;
+          
+        }
+        body{background-color: rgba(234,237,237,255);}
+        .cartitem{
+            border-bottom: 2px solid black;
+            border-radius: 10px;
+            border-left:1px solid black;;
+            box-shadow: 1px 1px 1px 1px;
+            display: flex;
+            margin: 2vh;
+            height: 35vh;
+            justify-content: space-between;
+            margin: 3vh;
+            background-color: white;
+        }
+        .Allitems{
+            width: 65%;
+        }
+        .proddetails{
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            font-size: 1.2rem;
+            
+        }
+        .prodimage{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .prodimage img{
+            width: 90%;
+            height: 80%;
+            border-radius: 10px;
+
+        }
+        h1{
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        .paymentdetails{
+            border: 1px solid black;
+            width: 20%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            font-size: larger;
+            font-weight: bold;
+            margin-top: 10vh;
+            background-color: white;
+           
+        }
+        .checkout{
+            width: 14vw;
+            height: 7vh;
+            border: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bolder;
+            background-color:rgb(212, 117, 1);
+            color: white;
+            border-radius: 10px;
+        }
+        .checkout:hover{
+            cursor: pointer;
+        }
+        .fancyborder{
+            border: 2px solid rgb(39, 38, 38);
+            height: 70vh;
+            border-radius: 60%;
+        }
+        .decrease,.increase{
+            font-size: 4vh;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+        }
+        .decrease,.increase:hover{
+            cursor: pointer;
+        }
+        .fa-truck-fast{
+            font-size: larger;
+        }
+        .fa-square-minus,.fa-square-plus{
+            pointer-events: none;
+        }
+        *{
+            margin: 0;
+        }
+        .navbar{
+            margin-bottom: 2vh;
+        }
+    </style>
+</head>
+<body>
+
+    {{>usernavbar cartQuantity = cartQuantity}}
+    <h1>Cart</h1>
+    
+    <div class="cartItems">
+        <div class="Allitems">
+            {{#each cart.cartitems as |p|}}
+        <div class="cartitem">
+            <div class="prodimage"><img src="{{p.prodid.imageUrl}}" height="150px" width="150px" ></div>
+            <div class="proddetails"><div class="name">Name: {{p.prodid.name}}</div>
+            <div class="desc"> Description: {{p.prodid.description}}</div>
+            <div class="price">Price: {{p.prodid.price}}</div>
+            <div class="quantity">
+                <button id='{{p.prodid._id}}' class="decrease"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
+                <button id='{{p.prodid._id}}' class="increase"><i class="fa-regular fa-square-plus"></i></button>
+            </div>
+            <div style="display:none" id="{{p.prodid._id}}"></div></div>
+
+
+            
+        </div>
+        {{/each}}
+        </div>
+        <div class="fancyborder"></div>
+        <div class="paymentdetails">
+        <div class="totalprice"> Total Price: {{totalPrice}} </div>
+        {{!-- <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OQ5HcOH4Q7GZCC" async> </script>
+        <button class="checkout" type="submit">Checkout<i class="fa-solid fa-truck-fast" style="color: #63E6BE;"></i> </button></form> --}}
+        <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OQAq8kAr830C2L" async> </script> </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+    <script >
+        let items = document.querySelector('.cartItems')
+    items.addEventListener('click',(ev)=>{
+    if( ev.target.classList.contains('decrease')){
+        let id = ev.target.parentElement.nextElementSibling.getAttribute('id')
+        axios.get(`/user/cart/decrease?id=${id}`).then(({data})=>{
+            let {cart,totalPrice,cartQuantity} = data 
+            document.querySelector('totalPrice').innerText = totalPrice
+            items.innerHTML=""
+            cart.cartitem.forEach(p => {
+                let li = document.createElement('li')
+                li.innerHTML=`
+                <img src=${p.prodid.imageUrl}height="150px" width="150px" ><br>
+            Name: <span>${p.prodid.name}</span><br>
+            Description: <span>${p.prodid.desccription}</span><br>
+            Price: <span>${p.prodid.price}</span><br>
+                `
+                li.innerHTML += `<div class="quantity">
+                                    <button class="decrease">-</button> Quantity: ${p.quantity} <button
+                                         class="increase">+</button>
+                                </div>
+                                <div style="display: none;" id="${p.prodid._id}"></div>
+            `
+                items.appendChild(li);
+                if(p.quantity==0){
+                    li.remove()
+                }
+                document.querySelector('.cartQuantity').innerText = cartQuantity;
+                ev.preventDefault();
+            });
+
+            
+        }).catch(err => {
+            window.location.reload();
+            
+        })
+    }
+    else if(ev.target.classList.contains('increase')){
+        let id = ev.target.parentElement.nextElementSibling.getAttribute('id');
+        // console.log(id);
+        axios.get(`/user/cart/increase?id=${id}`).then(({ data }) => {
+            // console.log(data);
+            let { cart, totalPrice, cartQuantity } = data;
+            document.querySelector('.totalPrice').innerText = totalPrice;
+            items.innerHTML = "";
+            // console.log(cart)
+            cart.cartitems.forEach(p => {
+                // totalPrice += parseInt(p.id.price) * parseInt(p.quantity);
+                let li = document.createElement('li');
+                li.innerHTML = `
+                <img height="150px" src=${p.id.imageUrl}></img><br>
+                Name: <span>${p.prodid.name}</span> <br>
+                Description: <span>${p.prodid.description}</span><br>
+                Price: <span>${p.prodid.price}</span><br>
+            `
+                // if (p.id.reviews.length > 0) {
+                //     let str = ""
+                //     p.id.reviews.forEach(item => {
+                //         str += ${item.details}, ${items.rating}
+                //     });
+                // }
+                // li.innerText += str;
+                li.innerHTML += `<div class="quantity">
+                                    <button class="decrease">-</button> Quantity: ${p.quantity} <button
+                                         class="increase">+</button>
+                                </div>
+                                <div style="display: none;" id="${p.prodid._id}"></div>
+            `
+                items.appendChild(li);
+
+                document.querySelector('.cartQuantity').innerText = cartQuantity;
+                ev.preventDefault();
+            });
+        }).catch(err => {
+            window.location.reload();
+        })
+    }
+})
+
+/////////////////////// CODE FOR ADD TO CART ENDS /////////////////////////////////////////////////////////////////////////////////////////////////// 
+    </script>
+    
+    
+</body>
+</html>

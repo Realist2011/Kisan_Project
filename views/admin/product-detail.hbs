@@ -1,0 +1,183 @@
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap'
+      rel='stylesheet' />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons+Outlined' rel='stylesheet' />
+    <link rel="stylesheet" href="../../public/sidebar.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+      integrity='sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=='
+      crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <style>
+      body {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        background-image: url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      #sidebar {
+        width: 260px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      h1 {
+        font-family: 'Montserrat';
+        text-align: center;
+        margin-top: 3.5%;
+        margin-bottom: 3%;
+        font-size: 43px;
+      }
+
+      .main {
+        display:
+          flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%
+      }
+
+      img {
+        height: 20vw;
+        width: 20vw;
+        border: solid 3px;
+        border-radius: 50%;
+        margin-right: 30px;
+        position: relative;
+        top: -5vh;
+      }
+
+      .subDetails {
+        line-height: 2;
+        font-weight: bolder;
+        font-size: 1.6em;
+        font-family: 'Roboto Slab';
+        width: 100%;
+        overflow-wrap:
+          break-word;
+      }
+
+      .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 5vh;
+        padding: 2vh 3vw;
+      }
+
+      .button {
+        height: 8vh;
+        width: 20vw;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 10px;
+        color: black;
+        background-color: white;
+      }
+
+      .button:hover {
+        font-size: 1.6rem;
+        color: black;
+        background-color:
+          lightgreen;
+        transition: 200ms;
+      }
+
+      a {
+        text-decoration: none;
+        color: black
+      }
+
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-image:
+          url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
+        background-repeat:
+          no-repeat;
+        background-size: cover;
+      }
+
+      .right {
+        margin-top: 5vh;
+        width: 50vw;
+      }
+
+      .centerpage {
+        display: flex;
+        margin-left: 2.5vw;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    {{>sidebar}}
+    <div class='centerpage'>
+
+      <div class='content'>
+        <h1>PRODUCT DETAILS</h1><br />
+
+        <div class='main'>
+          <div class='left'>
+            <img height='' src={{product.imageUrl}} />
+          </div>
+          <div class='right'>
+            <div class='subDetails'>Name : {{product.name}} </div>
+            <div class='subDetails'>Description : {{product.description}}</div>
+            <div class='subDetails'>Price : {{product.price}}</div>
+            <div class='subDetails'>Seller : {{product.seller}}</div>
+            <div class='subDetails'>Date : {{product.date}}</div>
+            <div class='button-container'>
+              <a href='updateproduct/{{product._id}}'><button class='button'>Update</button></a>
+              <a href='deleteproduct/{{product._id}}'><button class='button'>Delete</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+
+    <script>
+      // SIDEBAR TOGGLE
+
+      let sidebarOpen = false;
+      const sidebar = document.getElementById('sidebar');
+
+      function openSidebar() {
+        if (!sidebarOpen) {
+          sidebar.classList.add('sidebar-responsive');
+          sidebarOpen = true;
+        }
+      }
+
+      function closeSidebar() {
+        if (sidebarOpen) {
+          sidebar.classList.remove('sidebar-responsive');
+          sidebarOpen = false;
+        }
+      }
+
+
+    </script>
+  </body>
+
+</html>
