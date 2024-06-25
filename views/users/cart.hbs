@@ -1,281 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../../public/usernav.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../public/usernav.css">
+        <link rel="stylesheet" href="../../public/endpage.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-        .cartItems {
-            display: flex;
-            justify-content: center;
-            justify-content: space-evenly;
-            background-size: cover;
-            border-radius: 20px;
-        }
+            .cartItems {
+                display: flex;
+                justify-content: center;
+                justify-content: space-evenly;
+                background-size: cover;
+                border-radius: 20px;
+            }
 
-        body {}
+            body {}
 
-        .cartitem {
-            border-radius: 10px;
-            display: flex;
-            margin: 2vh;
-            height: 32vh;
-            justify-content: space-between;
-            margin: 3vh;
-            background-color: #e9e7e760;
-        }
+            .cartitem {
+                border-radius: 10px;
+                display: flex;
+                margin: 2vh;
+                height: 33vh;
+                justify-content: space-between;
+                margin: 3vh;
+                background-color: #e9e7e760;
 
-        .Allitems {
-            width: 65%;
-        }
+            }
 
-        .proddetails {
-            margin-top: 3.5vh;
-            height: 90%;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            font-size: 1.3rem;
-            line-height: 0.55;
-        }
+            .Allitems {
+                width: 68%;
+            }
 
-        .prodimage {
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+            .proddetails {
+                margin-top: 3.5vh;
+                height: 90%;
+                width: 62%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                font-size: 1.3rem;
+                line-height: 0.55;
+            }
 
-        .prodimage img {
-            width: 90%;
-            height: 80%;
-            border-radius: 10px;
-        }
+            .prodimage {
+                width: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-left: 5vw;
-            margin-bottom: -8px;
-            padding-top: 7px;
-        }
+            .prodimage img {
+                width: 90%;
+                height: 80%;
+                border-radius: 10px;
+            }
 
-        .paymentdetails {
-            border: 1px solid black;
-            width: 20%;
-            height: 50vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            font-size: larger;
-            font-weight: bold;
-            margin-top: 10vh;
-            background-color: white;
-        }
+            h1 {
+                font-size: 2.5rem;
+                margin-left: 5vw;
+                margin-bottom: -8px;
+                padding-top: 7px;
+            }
 
-        .checkout {
-            width: 14vw;
-            height: 10vh;
-            border: none;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            font-size: 1.4rem;
-            font-weight: bolder;
-            background-color: rgb(212, 117, 1);
-            color: white;
-            border-radius: 10px;
-        }
+            .paymentdetails {
+                border: 1px solid black;
+                width: 130%;
+                height: 40vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                font-size: larger;
+                font-weight: bold;
+                margin-top: 5vh;
+                background-color: #e9e7e760;
+            }
 
-        .checkout:hover {
-            cursor: pointer;
-        }
+            .checkout {
+                width: 14vw;
+                height: 10vh;
+                border: none;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                font-size: 1.4rem;
+                font-weight: bolder;
+                background-color: rgb(212, 117, 1);
+                border-radius: 10px;
 
-        .fancyborder {
-            border: 2px solid rgb(39, 38, 38);
-            height: 70vh;
-            border-radius: 60%;
-        }
+            }
 
-        .decrease,
-        .increase {
-            font-size: 4vh;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-        }
+            .checkout:hover {
+                cursor: pointer;
+            }
 
-        .decrease,
-        .increase:hover {
-            cursor: pointer;
-        }
+            .fancyborder {
+                border: 2px solid rgb(39, 38, 38);
+                height: 70vh;
+                border-radius: 60%;
+            }
 
-        .fa-truck-fast {
-            font-size: larger;
-        }
+            .decrease,
+            .increase {
+                font-size: 4vh;
+                border-radius: 50%;
+                border: none;
+                background: transparent;
+            }
 
-        .fa-square-minus,
-        .fa-square-plus {
-            pointer-events: none;
-            font-size: 1.4rem;
-            padding-bottom: 12px;
-        }
+            .decrease,
+            .increase:hover {
+                cursor: pointer;
+            }
 
-        * {
-            margin: 0;
-        }
+            .fa-truck-fast {
+                font-size: larger;
+            }
 
-        .navbar {
-            margin-bottom: 2vh;
-        }
+            .fa-square-minus,
+            .fa-square-plus {
+                pointer-events: none;
+                font-size: 1.4rem;
+                padding-bottom: 12px;
+            }
 
-        .instock {
-            color: green;
-        }
+            * {
+                margin: 0;
+            }
 
-        .name {
-            font-size: 1.75rem;
-            font-weight: 800;
-        }
+            .navbar {
+                margin-bottom: 2vh;
+            }
 
-        .price {
-            font-size: larger;
-            font-weight: bolder;
-        }
+            .instock {
+                color: green;
+            }
 
-        .ship {
-            color: rgb(85, 83, 83);
-            font-size: 1.05rem;
-        }
+            .name {
+                font-size: 1.75rem;
+                font-weight: 800;
+            }
 
-        .deletebtn {
-            background-color: transparent;
-            border-radius: 10px;
-            border: 0px;
-            text-decoration: none;
-            font-weight: bolder;
-            font-size: 1.02rem;
-            color: rgb(82, 82, 234);
-            margin-left: 3vw;
-            
-        }
+            .price {
+                font-size: larger;
+                font-weight: bolder;
+            }
 
-        .deletebtn:hover {
-            cursor: pointer;
-            text-decoration: underline;
-        }
+            .ship {
+                color: rgb(85, 83, 83);
+                font-size: 1.05rem;
+            }
 
-        .endline {
-            display: flex;
-            align-items: center;
-        }
+            .deletebtn {
+                background-color: transparent;
+                border-radius: 10px;
+                border: 0px;
+                text-decoration: none;
+                font-weight: bolder;
+                font-size: 1.02rem;
+                color: rgb(82, 82, 234);
+                margin-left: 3vw;
 
-        .quantity {
-            display: flex;
-            align-items: center;
-        }
-    </style>
-</head>
+            }
 
-<body>
+            .deletebtn:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
 
-    {{>usernavbar cartQuantity = cartQuantity}}
-    <container style="font-family: 'Anek Devanagari',sans-serif;">
-        <h1>Shopping Cart</h1>
+            .endline {
+                display: flex;
+                align-items: center;
+            }
 
-        <div class="cartItems">
-            <div class="Allitems">
-                {{#each cart.cartitems as |p|}}
-                <div class="cartitem">
-                    <div class="prodimage">
-                        <img src="{{p.prodid.imageUrl}}" height="150px" width="150px">
-                    </div>
-                    <div class="proddetails">
-                        <div class="name"> {{p.prodid.name}}</div>
-                        <div class="instock"> In Stock</div>
+            .quantity {
+                display: flex;
+                align-items: center;
+            }
 
-                        <div class="price">Price : ₹{{p.prodid.price}}</div>
+            .totalprice {
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                
+            }
 
-                        <div class="ship">Eligible for FREE Shipping</div>
-                        <div class="endline">
-                            <div class="quantity">
-                                <button class="decrease" data-id="{{p.prodid._id}}"><i class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
-                                <button class="increase" data-id="{{p.prodid._id}}"><i class="fa-regular fa-square-plus"></i></button>
-                            </div>
-                            <div class="delete">
-                                <button class="deletebtn" data-id="{{p.prodid._id}}">Delete</button>
+            .amt {
+                font-weight: lighter;
+                text-decoration: underline;
+
+            }
+
+            .total {
+                font-size: 1.6rem;
+            }
+            .rightside{
+                display: flex;
+                flex-direction: column;
+                width: 14vw;
+                margin-right: 30px;
+                
+            }
+            .first{
+                margin-top:8%;
+                font-size: 1.6rem;
+                font-weight: bold;
+                margin-bottom: -16%;
+            }
+            .third{
+                margin-top: 10px;
+                font-weight: 500;
+               
+                color: rgb(7, 7, 166);
+                line-height: 1.4;
+                font-size: 1.05rem;
+            }
+            .address{
+                width: 80%;
+                font-size: 1rem;
+                margin-left: auto;
+                
+                margin-right: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        {{>usernavbar cartQuantity = cartQuantity user=user}}
+        <container style="font-family: 'Anek Devanagari',sans-serif;">
+            <h1>Shopping Cart</h1>
+
+            <div class="cartItems">
+                <div class="Allitems">
+                    {{#each cart.cartitems as |p|}}
+                    <div class="cartitem">
+                        <div class="prodimage">
+                            <img src="{{p.prodid.imageUrl}}" height="150px" width="150px">
+                        </div>
+                        <div class="proddetails">
+                            <div class="name"> {{p.prodid.name}}</div>
+                            <div class="instock"> In Stock</div>
+
+                            <div class="price">Price : ₹{{p.prodid.price}}</div>
+
+                            <div class="ship">Eligible for FREE Shipping</div>
+                            <div class="endline">
+                                <div class="quantity">
+                                    <button class="decrease" data-id="{{p.prodid._id}}"><i
+                                            class="fa-regular fa-square-minus"></i></button>Quantity:{{p.quantity}}
+                                    <button class="increase" data-id="{{p.prodid._id}}"><i
+                                            class="fa-regular fa-square-plus"></i></button>
+                                </div>
+                                <div class="delete">
+                                    <button class="deletebtn" data-id="{{p.prodid._id}}">Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
-                {{/each}}
+                {{!-- <div class="fancyborder"></div> --}}
+                <div class="rightside">
+                    <div class="first">
+                        Price Details
+                    </div>
+                    <div class="paymentdetails">
+
+                        <div class="totalprice">
+                            <div class="amt">Total Amount </div>
+                            <div class="total">- ₹{{totalPrice}}</div>
+                        </div>
+                        <div class="address">
+                            <div class="address">Deliver To : <br>{{address}}</div>
+                        </div>
+                        <div class="proceed">
+                            <p>Proceed to Buy</p>
+                            <form>
+                                <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                    data-payment_button_id="pl_OQAq8kAr830C2L" async> </script>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="third">
+                        Safe and Secure Payments.
+                        100% Authentic products and
+                        Easy returns
+                    </div>
+                </div>
             </div>
-            <div class="fancyborder"></div>
-            <div class="paymentdetails">
-                <div class="totalprice"> Total Price: ₹{{totalPrice}} </div>
-                <form>
-                    <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OQAq8kAr830C2L" async> </script>
-                </form>
-            </div>
-        </div>
-    </container>
+        </container>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+        {{>endpage}}
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 
-    <script>
-        let items = document.querySelector('.cartItems');
+        <script>
+            let items = document.querySelector('.cartItems');
 
-        items.addEventListener('click', (ev) => {
-            const button = ev.target.closest('button');
-            if (!button) return;
+            items.addEventListener('click', (ev) => {
+                const button = ev.target.closest('button');
+                if (!button) return;
 
-            const id = button.getAttribute('data-id');
-            if (!id) return;
+                const id = button.getAttribute('data-id');
+                if (!id) return;
 
-            if (button.classList.contains('decrease')) {
-                updateCart('/user/cart/decrease', id);
-            } else if (button.classList.contains('increase')) {
-                updateCart('/user/cart/increase', id);
-            } else if (button.classList.contains('deletebtn')) {
-                deleteItem(id);
+                if (button.classList.contains('decrease')) {
+                    updateCart('/user/cart/decrease', id);
+                } else if (button.classList.contains('increase')) {
+                    updateCart('/user/cart/increase', id);
+                } else if (button.classList.contains('deletebtn')) {
+                    deleteItem(id);
+                }
+            });
+
+            function updateCart(url, id) {
+                axios.get(`${url}?id=${id}`).then(({ data }) => {
+                    let { cart, totalPrice, cartQuantity } = data;
+                    document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
+                    renderCartItems(cart.cartitems);
+                    document.querySelector('.cartQuantity').innerText = cartQuantity;
+                }).catch(err => {
+                    window.location.reload();
+                });
             }
-        });
 
-        function updateCart(url, id) {
-            axios.get(`${url}?id=${id}`).then(({ data }) => {
-                let { cart, totalPrice, cartQuantity } = data;
-                document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
-                renderCartItems(cart.cartitems);
-                document.querySelector('.cartQuantity').innerText = cartQuantity;
-            }).catch(err => {
-                window.location.reload();
-            });
-        }
+            function deleteItem(id) {
+                axios.get(`/user/cart/delete/${id}`).then(({ data }) => {
+                    let { cart, totalPrice, cartQuantity } = data;
+                    document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
+                    renderCartItems(cart.cartitems);
+                    document.querySelector('.cartQuantity').innerText = cartQuantity;
+                }).catch(err => {
+                    window.location.reload();
+                });
+            }
 
-        function deleteItem(id) {
-            axios.get(`/user/cart/delete?id=${id}`).then(({ data }) => {
-                let { cart, totalPrice, cartQuantity } = data;
-                document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
-                renderCartItems(cart.cartitems);
-                document.querySelector('.cartQuantity').innerText = cartQuantity;
-            }).catch(err => {
-                window.location.reload();
-            });
-        }
-
-        function renderCartItems(cartitems) {
-            const allItems = document.querySelector('.Allitems');
-            allItems.innerHTML = '';
-            cartitems.forEach(p => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cartitem';
-                cartItem.innerHTML = `
+            function renderCartItems(cartitems) {
+                const allItems = document.querySelector('.Allitems');
+                allItems.innerHTML = '';
+                cartitems.forEach(p => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cartitem';
+                    cartItem.innerHTML = `
                     <div class="prodimage">
                         <img src="${p.prodid.imageUrl}" height="150px" width="150px">
                     </div>
@@ -294,10 +365,10 @@
                             </div>
                         </div>
                     </div>`;
-                allItems.appendChild(cartItem);
-            });
-        }
-    </script>
-</body>
+                    allItems.appendChild(cartItem);
+                });
+            }
+        </script>
+    </body>
 
 </html>

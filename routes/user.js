@@ -11,5 +11,6 @@ router.get('/cart/show', userController.getCartShow)
 router.get('/cart/decrease', userController.getCartDecrease)
 router.get('/cart/increase', userController.getCartIncrease)
 router.post('/review/add', userController.postAddReview)
+router.get('/cart/delete/:id',userController.deleteCartItem)
 
 module.exports = router

@@ -8,6 +8,7 @@ module.exports.getProductsAll = async (req, res, next) => {
     let all_products = await products.find({})
     res.render('users/products-list', {
       products: all_products,
+      user:req.user._id
     })
     console.log(req.user)
   } catch (err) {
@@ -24,6 +25,7 @@ module.exports.getProductById = async (req, res, next) => {
     // console.log(product)
     res.render('users/product-details', {
       product: product,
+      user:req.user._id
     })
   } catch (err) {
     next(err)
@@ -90,6 +92,8 @@ module.exports.getCartShow = async (req, res, next) => {
       cart: cart_obj,
       totalPrice,
       cartQuantity: cart_obj.cartitems.length,
+      address:req.user.address,
+      user:req.user._id
     })
   } catch (err) {
     next(err)
@@ -200,4 +204,23 @@ module.exports.postAddReview = async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+}
+
+module.exports.deleteCartItem =async(req,res,next)=>{
+   const { id } = req.params;
+   console.log(id);
+   const cart_obj = await cart.findOne({
+    userid: req.user._id,
+  })
+  let arr=cart_obj.cartitems;
+ 
+  for(let i=0;i<arr.length;i++){
+    if(arr[i].prodid==id){
+      arr[i].quantity=0;
+      arr.pull(arr[i]);
+      break;
+    }
+  }
+  cart_obj.cartitems=arr;
+  cart_obj.save();
 }

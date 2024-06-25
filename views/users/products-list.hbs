@@ -10,6 +10,7 @@
       crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel='stylesheet' href='../../public/usernav.css' />
+    <link rel="stylesheet" href="../../public/endpage.css">
     <style>
       * {
         margin: 0;
@@ -47,9 +48,9 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 300px;
-        height: 420px;
+        height: 415px;
         margin: 20px;
-
+        font-size: 1.1rem;
         img {
           border-radius: 20px;
           height: 250px;
@@ -61,6 +62,7 @@
         box-shadow: 2px 2px 4px gray;
         border-radius: 20px;
         display: inline-block;
+        
       }
 
       .product_card:hover {
@@ -89,8 +91,7 @@
         margin-top: 30px;
         margin-bottom: 25px;
         text-align: center;
-        color: rgb(4,
-            95, 4);
+        color: rgb(4,95, 4);
         font-weight: bold;
       }
 
@@ -99,6 +100,13 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
         margin-top: 5vh;
+      }
+      .addtocart{
+        font-size: 1.2rem;
+        padding-top: 4px;
+      }
+      .addtocart:hover{
+        text-decoration: underline;
       }
     </style>
     <style>
@@ -181,8 +189,8 @@
               <div class='addtocart' style='font-weight: bold;'><a class="a" href='/user/cart/add/{{p._id}}'>Add to
                   Cart</a></div>
 
-              <div class='getinfo' style='font-weight: bold;'><a class="a" href='/user/products/{{p._id}}'>Get Info</a>
-              </div>
+              {{!-- <div class='getinfo' style='font-weight: bold;'><a class="a" href='/user/products/{{p._id}}'>Get Info</a>
+              </div> --}}
             </div>
           </div>
       </a>
@@ -190,105 +198,111 @@
       {{/each}}
 
     </div>
-    <button class='close pop-out' onclick='close()'><i class='fa-regular fa-circle-xmark'
-        style='color: #63E6BE;'></i></button>
+    <button class='close pop-out' onclick='close()'><i
+        class='fa-regular fa-circle-xmark'
+        style='color: #63E6BE;'
+      ></i></button>
     <div id='overlay' class="pop-out"></div>
     <script>
-      function togglePopOut() {
-        const popOutElement = document.getElementById('overlay');
-        const popOutElement2 = document.querySelector('.close');
-        popOutElement.classList.toggle('active');
-        popOutElement2.classList.toggle('active');
+       function togglePopOut() {
+      const popOutElement = document.getElementById('overlay');
+      const popOutElement2 = document.querySelector('.close');
+      popOutElement.classList.toggle('active');
+      popOutElement2.classList.toggle('active');
       }
+  
+
+
+
+
+  function centerOverlay() {
+  const overlay = document.getElementById('overlay');
+  const viewportHeight = window.innerHeight;
+  const viewportWidth = window.innerWidth;
+  const overlayHeight = overlay.offsetHeight;
+  const overlayWidth = overlay.offsetWidth;
+
+  const topOffset = Math.max(0, (viewportHeight - overlayHeight) / 2);
+  const leftOffset = Math.max(0, (viewportWidth - overlayWidth) / 2);
+
+  overlay.style.top = `${topOffset}px`;
+  overlay.style.left = `${leftOffset}px`;
+  document.querySelector('.close').style.top=`${topOffset+20 }px`;
+  document.querySelector('.close').style.left='1250px';
+}
 
 
 
 
 
-      function centerOverlay() {
-        const overlay = document.getElementById('overlay');
-        const viewportHeight = window.innerHeight;
-        const viewportWidth = window.innerWidth;
-        const overlayHeight = overlay.offsetHeight;
-        const overlayWidth = overlay.offsetWidth;
 
-        const topOffset = Math.max(0, (viewportHeight - overlayHeight) / 2);
-        const leftOffset = Math.max(0, (viewportWidth - overlayWidth) / 2);
-
-        overlay.style.top = `${topOffset}px`;
-        overlay.style.left = `${leftOffset}px`;
-        document.querySelector('.close').style.top = `${topOffset + 20}px`;
-        document.querySelector('.close').style.left = '1250px';
-      }
-
-
-
-
-
-
-      function load(productid) {
-        fetch(`/user/products/${productid}`)
-        .then(res => res.text()).then(html => {
-          document.body.style.overflow = 'hidden'
-          document.getElementById('overlay').style.display = 'block'
-          centerOverlay();
-          togglePopOut();
-          document.getElementById('overlay').innerHTML = html;
-          document.querySelector('.productContent').style = 'margin:0'
-          document.querySelector('.a').style.pointerEvents = 'none';
-          document.querySelector('.navbarrr').style.display = 'none'
-          document.querySelector('.close').style.display = 'block';
-          document.querySelector('.review-section').style.display = 'none';
-          document.querySelector('.endpage').style.display = 'none';
-          document.querySelector('.product').style = '  filter: blur(4px);}'
-          document.body.style.backgroundColor = 'white';
-          document.querySelectorAll('.a').forEach(Element => {
-            Element.style.pointerEvents = 'none';
-            console.log(Element)
-          });
-        }).catch(Error => console.log("error"))
+      function load(productid){ fetch(`/user/products/${productid}`)
+      .then(res=>res.text()) .then(html =>{
+      document.body.style.overflow='hidden'
+      document.getElementById('overlay').style.display='block'
+      centerOverlay();
+      togglePopOut();
+      document.getElementById('overlay').innerHTML=html;
+      document.querySelector('.productContent').style='margin:0'
+      document.querySelector('.a').style.pointerEvents='none';
+      document.querySelector('.navbarrr').style.display='none'
+      document.querySelector('.close').style.display='block';
+      document.querySelector('.review-section').style.display='none';
+      document.querySelector('.endpage').style.display='none';
+      document.querySelector('.product').style='  filter: blur(4px);}'
+      document.body.style.backgroundColor='white';
+      document.querySelectorAll('.a').forEach(Element=>{
+      Element.style.pointerEvents='none';
+      console.log(Element)
+      });
+      }) .catch(Error=> console.log("error")) 
       }
 
       document.querySelectorAll('.product_card').forEach(card => {
         let holdtimer;
-        card.addEventListener('mousedown', function () {
-          const productId = this.dataset.productId;
-          holdtimer = setTimeout(() => {
+        card.addEventListener('mousedown',function(){
+          const productId=this.dataset.productId;
+          holdtimer=setTimeout(()=>{
             load(productId);
-          }, 1000);
+          },1000);
 
         });
-        card.addEventListener('mouseup', () => {
+        card.addEventListener('mouseup',()=>{
           clearTimeout
-            (holdtimer);
+          (holdtimer);
         });
       })
 
-      function close() {
-        console.log("pressed")
-        togglePopOut();
-        { { !--document.getElementById('overlay').style.display='none' -- } }
-        document.querySelector('.product').style = '  filter: blur(0px);}'
-        document.querySelector('.close').style.display = 'none';
-        document.querySelectorAll('.load').forEach(Element => {
-          Element.disabled = false;
-        });
-        document.body.style.overflow = 'auto'
-        document.querySelectorAll('.a').forEach(Element => {
-          Element.style.pointerEvents = 'auto';
-          console.log(Element)
-        });
+  
+
+
+
+
+      function close(){
+      console.log("pressed")
+      togglePopOut();
+      {{!-- document.getElementById('overlay').style.display='none' --}}
+      document.querySelector('.product').style='  filter: blur(0px);}'
+      document.querySelector('.close').style.display='none';
+      document.querySelectorAll('.load').forEach(Element=>{
+      Element.disabled=false; }); 
+      document.body.style.overflow='auto'
+      document.querySelectorAll('.a').forEach(Element=>{
+      Element.style.pointerEvents='auto';
+      console.log(Element)
+      });
       }
-      document.querySelector('.close').addEventListener('click', close);
-      document.querySelector('.close').style.display = 'none';
+      document.querySelector('.close').addEventListener('click',close);
+      document.querySelector('.close').style.display='none';
     </script>
+    {{>endpage}}
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    AOS.init({ offset: 200, Duration: 1000 })
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      AOS.init({ offset: 200, Duration: 1000 })
 
-  </script>
+    </script>
 
 </html>

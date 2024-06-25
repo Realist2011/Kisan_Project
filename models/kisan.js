@@ -28,6 +28,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  address:{
+    type:String,
+    required:true
+  }
 })
 
 UserSchema.pre('save', async function (next) {

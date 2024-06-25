@@ -115,8 +115,8 @@ app.use('/admin', adminRouter)
 });*/
 
 app.post('/register', async (req, res) => {
-  const { password, username, phone, Email, city, country, u, a } = req.body
-  let ar = [username, password, phone, Email, city, country]
+  const { password, username, phone, Email, city, country, address  } = req.body
+  let ar = [username, password, phone, Email, city, country,address]
   // res.send(pswd);
 
   res.render('index', { data: ar })
@@ -133,6 +133,7 @@ app.post('/register', async (req, res) => {
     Email,
     city,
     country,
+    address,
   })
   let f = await users.find({})
   console.log(f)
