@@ -235,8 +235,8 @@
         {{>usernavbar cartQuantity = cartQuantity user=user}}
         <container style="font-family: 'Anek Devanagari',sans-serif;">
             <h1>Shopping Cart</h1>
-
             <div class="cartItems">
+                {{#if cart}}
                 <div class="Allitems">
                     {{#each cart.cartitems as |p|}}
                     <div class="cartitem">
@@ -265,6 +265,12 @@
                     </div>
                     {{/each}}
                 </div>
+                {{else}}
+                <div class="Allitems" style="display:flex;flex-direction:column;align-items:center; justify-content:center; font-family: 'Anek Devanagari', sans-serif; text-align: center;">
+                    <h2>Your Cart is empty!</h1>
+                    <a href="/user/products/all" style="border: 2px solid grey; width:5.5rem;height:1.7rem; text-align:center; border-radius:10px;"> Shop More!</a>
+                </div>
+                {{/if}}
                 {{!-- <div class="fancyborder"></div> --}}
                 <div class="rightside">
                     <div class="first">
