@@ -82,15 +82,17 @@ module.exports.getCartShow = async (req, res, next) => {
       .findOne({ userid: req.user._id })
       .populate("cartitems.prodid");
 
-    if (!cart_obj) {
-      return res.render("users/cart", {
-        cart: null,
-        totalPrice: 0,
-        cartQuantity: 0,
-        address: req.user.address,
-        user: req.user._id,
-      });
+      if (!cart_obj || cart_obj.cartitems.length === 0) {
+        return res.render("users/cart", {
+            cart: null,
+            totalPrice: 0,
+            cartQuantity: 0,
+            address: req.user.address,
+            user: req.user._id,
+        });
     }
+    
+    console.log(cart_obj.cartitems.length)
     let totalPrice = 0;
     cart_obj.cartitems.forEach((item) => { 
       totalPrice += item.prodid.price * item.quantity;

@@ -330,6 +330,7 @@
                     document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
                     renderCartItems(cart.cartitems);
                     document.querySelector('.cartQuantity').innerText = cartQuantity;
+                    window.location.reload();
                 }).catch(err => {
                     window.location.reload();
                 });
@@ -341,6 +342,7 @@
                     document.querySelector('.totalprice').innerText = `Total Price: ₹${totalPrice}`;
                     renderCartItems(cart.cartitems);
                     document.querySelector('.cartQuantity').innerText = cartQuantity;
+                    window.location.reload();
                 }).catch(err => {
                     window.location.reload();
                 });
