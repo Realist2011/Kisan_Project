@@ -94,7 +94,8 @@
   #sidebar {
     grid-area: sidebar;
     height: 100%;
-    background-color: #263043;
+    background-color: whitesmoke;
+    
     overflow-y: auto;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -126,17 +127,18 @@
   
   .sidebar-list-item {
     padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
     font-size: 18px;
   }
   
   .sidebar-list-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: green;
     cursor: pointer;
   }
   
   .sidebar-list-item > a {
     text-decoration: none;
-    color: #9e9ea4;
+    color: black;
   }
   
   .sidebar-responsive {
@@ -158,11 +160,13 @@
     overflow-y: auto;
     padding: 20px 20px;
     color: rgba(255, 255, 255, 0.95);
+    margin-top: 0vmin;
   }
   
   .main-title {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    font-size: larger;
   }
   
   .main-cards {
@@ -180,23 +184,31 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 25px;
-    border-radius: 5px;
+    border-radius: 20px;
   }
   
   .card:first-child {
-    background-color: #2e7d32;
+    background-color: #FFF1ED;
   }
   
   .card:nth-child(2) {
-    background-color: #2e7d32;
+    background-color: #FFF1ED;
   }
   
   .card:nth-child(3) {
-    background-color: #2e7d32;
+    background-color: #FFF1ED;
   }
   
  
-  
+  .platforms {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  top: 42vh;
+}
+.fa-brands {
+  font-size: 5vh;
+}
   .card-inner {
     display: flex;
     align-items: center;
@@ -205,8 +217,11 @@
   
   .card-inner > .material-icons-outlined {
     font-size: 45px;
+    color: black;
   }
-  
+  h1,h2,h3{
+    color: black;
+  }
   .charts {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -280,13 +295,7 @@
   </head>
   <body>
     <div class="grid-container">
-      <div class="searchbar border">
-        <div class="search-container">
-          <input type="text" placeholder="Search...">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        
-      </div>
+   
 
       
     
@@ -301,21 +310,25 @@
         </div> --}}
 
         <ul class="sidebar-list">
+          <a href="/admin" style="text-decoration: none; color:black;">
           <li class="sidebar-list-item">
-            <a href="#" target="_blank">
-              <span class="material-icons-outlined">dashboard</span> Dashboard
-            </a>
+            
+             DASHBOARD
+            
           </li>
-          <li class="sidebar-list-item">
-            <a href="/admin/addproduct">
+          </a>
+          <a href="/admin/addproduct" style="text-decoration: none; color:black;">
+          <li class="sidebar-list-item" >
                ADD Products
-            </a>
           </li>
+          </a>
+          <a href="/admin/products/all" style="text-decoration: none; color:black;">
           <li class="sidebar-list-item">
-            <a href="/admin/products/all">
+            
                SHOW PRODUCTS
-            </a>
+            
           </li>
+          </a>
           {{!-- <li class="sidebar-list-item">
             <a href="#" target="_blank">
                DELETE Products
@@ -324,8 +337,26 @@
           
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">settings</span> Settings
+               SETTINGS
             </a>
+          </li>
+          <li >
+            <div style="margin-left: 20px; position:relative;top:40vh">Socials</div>
+            <div class="platforms">
+              
+      <div class="insta">
+        <a href=""><i class="fa-brands fa-instagram" style="color: #e26060"></i></a>
+      </div>
+      <div class="facebook">
+        <a href=""><i class="fa-brands fa-square-facebook" style="color: #0f72bd"></i></a>
+      </div>
+      <div class="twitter">
+        <a href=""><i class="fa-brands fa-x-twitter" style="color: #74c0fc"></i></a>
+      </div>
+      <div class="youtube">
+        <a href=""><i class="fa-brands fa-youtube" style="color: #ff0000;"></i></a>
+      </div>
+    </div>
           </li>
         </ul>
       </aside>
@@ -342,7 +373,7 @@
               <h3>PRODUCTS  LIST</h3>
               <span class="material-icons-outlined">inventory_2</span>
             </div>
-            <h1>Number</h1>
+            <h1>225</h1>
           </div>
 
           <div class="card">

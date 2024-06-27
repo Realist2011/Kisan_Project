@@ -106,7 +106,7 @@
 
     <div class="product">
       {{#each products as |p|}}
-
+      <a href="{{p._id}}">
       <div class="product_card" data-aos="fade-up">
         <img src="{{p.imageUrl}}" data-aos="zoom-in" /><br />
         <div class="pdescription">
@@ -119,17 +119,18 @@
 
           </span><br />
           <h4>40% OFF</h4>
-          {{#if p.reviews}}
+          {{!-- {{#if p.reviews}}
           <h5>Reviews</h5>
           <ul>
             {{#each p.reviews as |r|}}
             <li>{{r.details}}</li>
             {{/each}}
           </ul>
-          {{/if}}
+          {{/if}} --}}
           <h3><a href="{{p._id}}">GET Info</a></h3>
         </div>
       </div>
+      </a>
       {{/each}}
 
     </div>

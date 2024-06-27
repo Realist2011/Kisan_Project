@@ -178,6 +178,7 @@
       background-image: url(https://i.imghippo.com/files/gTq3d1715281830.jpg);
       background-repeat: no-repeat;
       background-size: cover;
+      overflow: hidden;
     }
 
     #sidebar {
@@ -327,9 +328,8 @@
     .maindiv {
       display: flex;
       flex-direction: column;
-      width: 100%;
       height: 100%;
-      overflow-y: hidden;
+      
     }
 
     .rightformdiv {
@@ -352,7 +352,7 @@
       <div class="heading">
         <h1>UPDATE PRODUCT</h1>
       </div>
-      <form action="/admin/products/updateproduct" method="post" class="form">
+      <form action="/admin/products/updateproduct" method="post" style="width: 80vw;">
         <div class="formdiv">
 
           <div class="leftformdiv">
@@ -365,7 +365,7 @@
             Price: <br><input type="text" name="price" value={{product.price}}></input> <br>
             Seller: <br><input type="text" name="seller" value={{product.seller}}></input> <br>
             <input type="hidden" name="id" value={{product._id}}></input>
-            {{>reviewSection product=product}}
+            {{!-- {{>reviewSection product=product}} --}}
             <button class="sub" type="submit">UPDATE</button>
           </div>
           <div class="rightformdiv">

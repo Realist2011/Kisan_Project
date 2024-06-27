@@ -7,7 +7,11 @@
         <title>Document</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
         <link rel="stylesheet" href="../../public/endpage.css">
-        <link rel="stylesheet" href="../../public/usernav.css">   
+        <link rel="stylesheet" href="../../public/usernav.css"> 
+        <link rel="stylesheet" href="../../public/ratings.css"> 
+         
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+   
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
@@ -73,6 +77,10 @@
                 margin-top: 10vh;
                 width: 80vw;
                 margin-bottom: 10vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center; 
             }
 
             textarea {
@@ -120,8 +128,8 @@
 
             .reviewBtn,
             .submitReview {
-                height: 35px;
-                width: 180px;
+                height: 30px;
+                width: 150px;
                 font-weight: bold;
                 font-size: 1.1rem;
                 border-radius: 14px;
@@ -157,6 +165,7 @@
             .navbarrr{
                 width: 100%;
             }
+            
         </style>
 
     </head>
@@ -201,15 +210,21 @@
 
         </div>
         <div class="review-section">
-            {{!-- <div class="review-section-header">
-                <div>
-                    <h2 class="h2">Reviews</h2>
-                </div>
-                <button class="reviewBtn">Add a Review</button>
-            </div> --}}
-
+            
+             <div class="rating-box">
+      <header>RATE OUR PRODUCT</header>
+     <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+    </div>
             <form action="/user/review/add" method="post">
+
     <div class="review-section-details hide">
+      
         <textarea cols="40" rows="5" type="text" name="review" id="review" placeholder="Enter a review"></textarea>
         <button class="submitReview" type="submit">Submit Review</button>
         <input type="hidden" name="productId" value="{{product._id}}">
@@ -221,7 +236,7 @@
 
         {{>endpage}}
 
-        <script>
+            <script>
             document.querySelector(".reviewBtn").addEventListener('click', (ev) => {
                 ev.preventDefault();
                 document.querySelector(".review-section-details").classList.toggle('hide');
@@ -247,6 +262,19 @@
                 })
                 document.querySelector(".review-section-details").classList.toggle('hide');
             })
+        </script>
+        <script>
+            
+const stars = document.querySelectorAll(".stars i");
+stars.forEach((star, index1) => {
+  
+star.addEventListener("click", () => {
+  stars.forEach((star, index2) => {
+     index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+    });
+  });
+});
+
         </script>
 
     </body>
